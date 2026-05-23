@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Disallow: /designer/
+Disallow: /professional/
+Disallow: /supplier/
+Disallow: /admin/
+Disallow: /auth
+Disallow: /checkout
+Disallow: /orders
+
+# Explicit permission for social crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+Sitemap: https://buildbazaarx.com/sitemap.xml
