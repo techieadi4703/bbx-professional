@@ -16,9 +16,9 @@ export default function ProfessionalAuth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  const [profession, setProfession] = useState("");
-  const [city, setCity] = useState("");
-  const [phone, setPhone] = useState("");
+  const [profession, setProfession] = useState(searchParams.get("trade") || "");
+  const [city, setCity] = useState(searchParams.get("city") || "");
+  const [phone, setPhone] = useState(searchParams.get("phone") || "");
   
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -32,7 +32,7 @@ export default function ProfessionalAuth() {
 
     if (profError) throw profError;
 
-    return profData ? "/" : "/setup";
+    return profData ? "/dashboard" : "/setup";
   };
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function ProfessionalAuth() {
           const nextPath = await resolveProfessionalDestination(authData.user.id);
           navigate(nextPath);
         } else {
-          navigate("/");
+          navigate("/dashboard");
         }
       } else {
         const { data, error } = await supabase.auth.signUp({
@@ -94,8 +94,8 @@ export default function ProfessionalAuth() {
             city: city
           }).eq('id', data.user.id);
 
-          toast({ title: "Identity Synchronized", description: "Proceeding to professional setup..." });
-          navigate("/setup");
+          toast({ title: "Account created", description: "Proceeding to professional setup..." });
+          navigate(`/setup?trade=${encodeURIComponent(profession)}`);
         }
       }
     } catch (error: any) {
@@ -108,7 +108,7 @@ export default function ProfessionalAuth() {
       console.error("Auth error:", error);
       toast({ 
         variant: "destructive", 
-        title: "Access Denied", 
+        title: "Login failed", 
         description: error.message || "Authentication failed. Please check your credentials." 
       });
     } finally {
@@ -131,15 +131,15 @@ export default function ProfessionalAuth() {
           <div className="flex flex-col md:flex-row gap-16 md:gap-24 items-start">
             
             <div className="w-full md:w-1/3 shrink-0 sticky top-32">
-               <span className="font-body uppercase tracking-[0.2em] text-[10px] text-[#735c00] mb-4 block font-bold">Execution & Trades</span>
+               <span className="font-body uppercase tracking-[0.2em] text-[10px] text-[#735c00] mb-4 block font-bold">FOR PROFESSIONALS</span>
                <h1 className="text-6xl md:text-7xl font-headline tracking-tight leading-none mb-6">
-                Professional <br/><span className="italic">{isLogin ? "Access." : "Registry."}</span>
+                {isLogin ? "Welcome" : "Join us"} <br/><span className="italic">{isLogin ? "back." : "today."}</span>
               </h1>
                <div className="w-12 h-[1px] bg-[#c4c6cc] mb-6"></div>
               <p className="text-lg font-body text-[#44474c] leading-relaxed max-w-sm">
                 {isLogin 
-                  ? "Re-authenticate to manage your strategic schedule and verify client commissions." 
-                  : "Establish your specialized registry within our verified network of execution professionals."}
+                  ? "Log in to manage your jobs, schedule, and earnings." 
+                  : "Join India's most trusted network of construction and trade professionals."}
               </p>
             </div>
 
@@ -147,41 +147,43 @@ export default function ProfessionalAuth() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white border border-[#e5e2df] p-8 md:p-12 rounded-sm shadow-sm"
+                className="bg-white border border-[#e5e2df] p-8 md:p-12 rounded-2xl shadow-2xl hover:border-[#735c00] transition-colors relative z-10"
               >
-                <form onSubmit={handleAuth} className="space-y-8">
+                <form onSubmit={handleAuth} className="space-y-5">
                   {!isLogin && (
                     <>
-                      <div className="space-y-4">
-                        <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Professional Title / Full Name</label>
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Full Name</label>
                         <div className="relative">
-                          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c4c6cc]" />
-                          <input required type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="e.g. Aditya Srivastava" className="w-full pl-12 pr-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body transition-colors" />
+                          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
+                          <input required type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="e.g. Aditya Srivastava" className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
                         </div>
                       </div>
 
-                      <div className="space-y-4">
-                        <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Primary Contact (WhatsApp)</label>
-                        <div className="relative">
-                          <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c4c6cc]" />
-                          <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 98765 XXXXX" className="w-full pl-12 pr-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body transition-colors" />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div className="space-y-2">
+                          <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Phone Number</label>
+                          <div className="relative">
+                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
+                            <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 98765 XXXXX" className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="space-y-4">
-                        <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Base Operations (City)</label>
-                        <div className="relative">
-                          <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c4c6cc]" />
-                          <input required type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="e.g. Jaipur" className="w-full pl-12 pr-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body transition-colors" />
+                        <div className="space-y-2">
+                          <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">City</label>
+                          <div className="relative">
+                            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
+                            <input required type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="e.g. Jaipur" className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
+                          </div>
                         </div>
                       </div>
                     </>
                   )}
 
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Professional Identity Email</label>
+                    <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Email</label>
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c4c6cc]" />
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
                       <input 
                         required 
                         type="email" 
@@ -189,15 +191,15 @@ export default function ProfessionalAuth() {
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)} 
                         placeholder="name@provider.com" 
-                        className="w-full pl-12 pr-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body transition-colors" 
+                        className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Security Key</label>
+                    <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Password</label>
                     <div className="relative">
-                      <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c4c6cc]" />
+                      <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
                       <input 
                         required 
                         type="password" 
@@ -205,23 +207,23 @@ export default function ProfessionalAuth() {
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
                         placeholder="••••••••" 
-                        className="w-full pl-12 pr-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body transition-colors" 
+                        className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
                       />
                     </div>
                   </div>
 
-                  <button type="submit" disabled={isLoading} className="w-full h-14 bg-[#1c1c1a] text-white text-[10px] font-bold uppercase tracking-widest rounded-sm hover:bg-[#735c00] transition-all flex items-center justify-center gap-3">
-                    {isLoading ? "Validating Matrix Sync..." : isLogin ? "Authenticate to Matrix" : "Establish Professional Identity"}
+                  <button type="submit" disabled={isLoading} className="w-full py-4 mt-2 bg-[#1c1c1a] text-white rounded-full font-bold hover:bg-[#735c00] transition-colors flex items-center justify-center gap-2 text-sm shadow-md">
+                    {isLoading ? "Signing you in…" : isLogin ? "Log in" : "Create my account"}
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </form>
 
                 <div className="mt-12 pt-8 border-t border-[#e5e2df] flex items-center justify-between">
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#74777d]">
-                    {isLogin ? "New registrar?" : "Existing operative?"}
+                  <span className="text-sm font-medium text-[#74777d]">
+                    {isLogin ? "New professional?" : "Already have an account?"}
                   </span>
-                  <button onClick={() => setIsLogin(!isLogin)} className="text-[10px] uppercase font-bold tracking-widest text-[#735c00] hover:underline underline-offset-4">
-                    {isLogin ? "Apply for Registry" : "Credential Access"}
+                  <button onClick={() => setIsLogin(!isLogin)} className="text-sm font-bold text-[#735c00] hover:underline underline-offset-4">
+                    {isLogin ? "Create an account" : "Log in"}
                   </button>
                 </div>
               </motion.div>

@@ -11,6 +11,7 @@ import { PageTransition } from "./components/shared/PageTransition";
 import { ErrorBoundary } from "./components/shared/ErrorBoundary";
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
+const Landing = React.lazy(() => import("./pages/Landing"));
 const Auth = React.lazy(() => import("./pages/Auth"));
 const Setup = React.lazy(() => import("./pages/Setup"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
@@ -35,9 +36,10 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Landing /></PageTransition>} />
+        <Route path="/dashboard" element={<ProtectedRoute><PageTransition><Dashboard /></PageTransition></ProtectedRoute>} />
         <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
-        <Route path="/setup" element={<PageTransition><Setup /></PageTransition>} />
-        <Route path="/" element={<PageTransition><Dashboard /></PageTransition>} />
+        <Route path="/setup" element={<ProtectedRoute><PageTransition><Setup /></PageTransition></ProtectedRoute>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>

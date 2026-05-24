@@ -51,7 +51,7 @@ export default function ProfessionalDashboard() {
         .maybeSingle();
 
       if (profileData && profileData.role !== "professional") {
-        navigate("/");
+        navigate("/dashboard");
         return;
       }
 
@@ -135,7 +135,7 @@ export default function ProfessionalDashboard() {
           .eq('id', profile.id);
         if (profileError) throw profileError;
       }
-      toast({ title: "Profile synchronized! ✨" });
+      toast({ title: "Profile updated" });
       fetchData();
     } catch (error: any) {
       toast({ variant: "destructive", title: "Error", description: error.message });
@@ -152,7 +152,7 @@ export default function ProfessionalDashboard() {
     }
 
     if (newSlot.endTime <= newSlot.startTime) {
-      toast({ variant: "destructive", title: "Invalid Time Range", description: "Terminate time must be later than commence time." });
+      toast({ variant: "destructive", title: "Invalid Time Range", description: "End time time must be later than commence time." });
       return;
     }
 
@@ -167,7 +167,7 @@ export default function ProfessionalDashboard() {
         });
 
       if (error) throw error;
-      toast({ title: "Slot added to registry! 📅" });
+      toast({ title: "Slot added" });
       setNewSlot({ date: "", startTime: "", endTime: "" });
       fetchData();
     } catch (error: any) {
@@ -200,7 +200,7 @@ export default function ProfessionalDashboard() {
       <Layout>
         <div className="flex flex-col items-center justify-center min-h-[70vh] gap-6 bg-[#fcf9f6]">
           <div className="w-8 h-8 border-4 border-[#735c00]/20 border-t-[#735c00] rounded-full animate-spin"></div>
-          <p className="font-body text-[10px] font-bold uppercase tracking-widest text-[#44474c]">Initializing Registry...</p>
+          <p className="font-body text-[10px] font-bold uppercase tracking-widest text-[#44474c]">Loading your dashboard…</p>
         </div>
       </Layout>
     );
@@ -223,7 +223,7 @@ export default function ProfessionalDashboard() {
             
             {/* Sidebar Controller */}
             <div className="w-full md:w-1/4 shrink-0 sticky top-32">
-              <span className="font-headline italic text-2xl text-[#735c00] mb-4 block underline underline-offset-8 decoration-1 decoration-[#c4c6cc]">Control Hub.</span>
+              <span className="font-headline italic text-2xl text-[#735c00] mb-4 block underline underline-offset-8 decoration-1 decoration-[#c4c6cc]">Menu</span>
               <h1 className="text-6xl font-headline tracking-tight leading-none mb-4">
                 Exec. <br/> <span className="italic">Matrix.</span>
               </h1>
@@ -234,10 +234,10 @@ export default function ProfessionalDashboard() {
 
               <div className="space-y-4 pt-8 border-t border-[#e5e2df]">
                 {[
-                  { id: "profile", label: "Registry Identity", icon: User },
-                  { id: "slots", label: "Strategic Schedule", icon: Calendar },
-                  { id: "earnings", label: "Wallet & Ledger", icon: Wallet },
-                  { id: "reviews", label: "Collaborator Feedback", icon: MessageSquare },
+                  { id: "profile", label: "My Profile", icon: User },
+                  { id: "slots", label: "My Schedule", icon: Calendar },
+                  { id: "earnings", label: "Earnings", icon: Wallet },
+                  { id: "reviews", label: "Reviews", icon: MessageSquare },
                 ].map((item) => (
                   <button 
                     key={item.id}
@@ -269,7 +269,7 @@ export default function ProfessionalDashboard() {
                   className="flex items-center gap-4 p-5 text-[#74777d] hover:text-[#1c1c1a] transition-all"
                 >
                   <LogOut className="w-4 h-4" />
-                  <span className="text-[10px] uppercase font-bold tracking-widest">Liquidate Session</span>
+                  <span className="text-[10px] uppercase font-bold tracking-widest">Log out</span>
                 </button>
               </div>
             </div>
@@ -299,7 +299,7 @@ export default function ProfessionalDashboard() {
                              onClick={() => setProfile({...profile, is_available: !profile.is_available})}
                              className={`px-4 py-1.5 rounded-full text-[8px] font-bold uppercase tracking-widest border transition-all ${profile.is_available ? "bg-[#735c00] border-[#735c00] text-white" : "border-[#e5e2df] text-[#74777d]"}`}
                            >
-                             {profile.is_available ? "Active Presence" : "Encrypted (Hidden)"}
+                             {profile.is_available ? "Available" : "Unavailable"}
                            </button>
                         </div>
                       </header>
@@ -307,43 +307,43 @@ export default function ProfessionalDashboard() {
                       <form onSubmit={handleUpdateProfile} className="space-y-12">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                            <div className="space-y-2 opacity-60 cursor-not-allowed">
-                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Verified Nomenclature</label>
+                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Full name</label>
                              <input value={profile.full_name} disabled className="w-full px-4 py-4 bg-[#fcf9f6] border border-[#e5e2df] rounded-sm text-sm outline-none font-body" />
                            </div>
                            <div className="space-y-2">
-                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Operational Sector *</label>
+                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Trade *</label>
                              <input value={profile.profession} onChange={e => setProfile({...profile, profession: e.target.value})} className="w-full px-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body transition-colors" />
                            </div>
                            <div className="grid grid-cols-2 gap-6">
                               <div className="space-y-2">
-                                <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Hourly Rate (₹)</label>
+                                <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Hourly rate (₹)</label>
                                 <input type="number" value={profile.hourly_rate} onChange={e => setProfile({...profile, hourly_rate: parseInt(e.target.value)})} className="w-full px-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body" />
                               </div>
                               <div className="space-y-2">
-                                <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Daily Shift (₹)</label>
+                                <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Day rate (₹)</label>
                                 <input type="number" value={profile.daily_rate} onChange={e => setProfile({...profile, daily_rate: parseInt(e.target.value)})} className="w-full px-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body" />
                               </div>
                            </div>
                            <div className="space-y-2">
-                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Federal City</label>
+                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">City</label>
                              <input value={profile.city} onChange={e => setProfile({...profile, city: e.target.value})} className="w-full px-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body transition-colors" />
                            </div>
                         </div>
 
                         <div className="space-y-10">
                            <div className="space-y-2">
-                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Technical Proficiencies (Comma Separatory)</label>
+                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Skills (comma-separated)</label>
                              <input value={skillsInput} onChange={e => setSkillsInput(e.target.value)} placeholder="Structural Wiring, Civil Foundations..." className="w-full px-4 py-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body" />
                            </div>
 
                            <div className="space-y-2">
-                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">Professional Narrative (Bio)</label>
+                             <label className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a] opacity-60">About you</label>
                              <textarea value={profile.bio} onChange={e => setProfile({...profile, bio: e.target.value})} rows={4} placeholder="Decades of specialized execution in..." className="w-full p-4 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-sm text-sm outline-none font-body transition-colors resize-none" />
                            </div>
                         </div>
 
                         <div className="flex justify-end pt-8 border-t border-[#e5e2df]">
-                           <button type="submit" className="h-14 px-12 bg-[#1c1c1a] text-white text-[10px] font-bold uppercase tracking-widest rounded-sm hover:bg-[#735c00] transition-all shadow-md">Execute Profile Sync</button>
+                           <button type="submit" className="h-14 px-12 bg-[#1c1c1a] text-white text-[10px] font-bold uppercase tracking-widest rounded-sm hover:bg-[#735c00] transition-all shadow-md">Save profile</button>
                         </div>
                       </form>
                     </div>
@@ -362,29 +362,29 @@ export default function ProfessionalDashboard() {
                             <h3 className="text-[11px] uppercase font-black tracking-[0.25em] text-[#0B132B]">Mark Availability</h3>
                             <form onSubmit={handleAddSlot} className="space-y-6">
                                <div className="space-y-2">
-                                 <label className="text-[10px] uppercase font-black text-[#0B132B]/60 tracking-widest ml-1">Target Date</label>
+                                 <label className="text-[10px] uppercase font-black text-[#0B132B]/60 tracking-widest ml-1">Date</label>
                                  <input type="date" required min={new Date().toISOString().split('T')[0]} value={newSlot.date} onChange={e => setNewSlot({...newSlot, date: e.target.value})} className="w-full px-5 py-4 bg-secondary/5 border border-border/50 focus:border-primary rounded-2xl text-sm outline-none font-bold placeholder:text-black/40" />
                                </div>
                                <div className="grid grid-cols-2 gap-4">
                                   <div className="space-y-2">
-                                    <label className="text-[10px] uppercase font-black text-[#0B132B]/60 tracking-widest ml-1">Commence</label>
+                                    <label className="text-[10px] uppercase font-black text-[#0B132B]/60 tracking-widest ml-1">Start time</label>
                                     <input type="time" required value={newSlot.startTime} onChange={e => setNewSlot({...newSlot, startTime: e.target.value, endTime: newSlot.endTime && newSlot.endTime <= e.target.value ? "" : newSlot.endTime})} className="w-full px-5 py-4 bg-secondary/5 border border-border/50 focus:border-primary rounded-2xl text-sm outline-none font-black" />
                                   </div>
                                   <div className="space-y-2">
-                                    <label className="text-[10px] uppercase font-black text-[#0B132B]/60 tracking-widest ml-1">Terminate</label>
+                                    <label className="text-[10px] uppercase font-black text-[#0B132B]/60 tracking-widest ml-1">End time</label>
                                     <input type="time" required min={newSlot.startTime || undefined} value={newSlot.endTime} onChange={e => setNewSlot({...newSlot, endTime: e.target.value})} className="w-full px-5 py-4 bg-secondary/5 border border-border/50 focus:border-primary rounded-2xl text-sm outline-none font-black" />
                                   </div>
                                </div>
-                               <button type="submit" className="w-full py-5 bg-[#0B132B] text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl hover:bg-primary transition-all shadow-xl shadow-black/10">Allocate Slot</button>
+                               <button type="submit" className="w-full py-5 bg-[#0B132B] text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl hover:bg-primary transition-all shadow-xl shadow-black/10">Add slot</button>
                             </form>
                          </div>
 
                          <div className="lg:col-span-12 xl:col-span-6 2xl:col-span-6 space-y-6">
-                            <h3 className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a]">Active Manifest</h3>
+                            <h3 className="text-[10px] uppercase font-bold tracking-widest text-[#1c1c1a]">Upcoming slots</h3>
                             {slots.length === 0 ? (
                               <div className="py-20 text-center border-2 border-dashed border-[#e5e2df] flex flex-col items-center justify-center opacity-40">
                                  <ListTodo className="w-8 h-8 mb-4" />
-                                 <p className="text-[9px] uppercase font-bold tracking-[0.2em]">Zero Slots Allocated</p>
+                                 <p className="text-[9px] uppercase font-bold tracking-[0.2em]">No slots yet</p>
                               </div>
                             ) : (
                               <div className="space-y-3">
@@ -425,9 +425,9 @@ export default function ProfessionalDashboard() {
                        
                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                           {[
-                            { label: "Tasks Fulfilled", value: profile.total_jobs, icon: CheckCircle },
-                            { label: "Trust Quotient", value: profile.rating, icon: Star, color: "text-[#735c00]" },
-                            { label: "Feedback Loop", value: profile.total_reviews, icon: MessageSquare }
+                            { label: "Jobs completed", value: profile.total_jobs, icon: CheckCircle },
+                            { label: "Rating", value: profile.rating, icon: Star, color: "text-[#735c00]" },
+                            { label: "Reviews", value: profile.total_reviews, icon: MessageSquare }
                           ].map((stat, i) => (
                             <div key={i} className="p-8 border border-[#e5e2df] bg-[#fcf9f6] text-center space-y-4">
                                <div className="w-10 h-10 bg-white border border-[#e5e2df] rounded-full mx-auto flex items-center justify-center">
@@ -441,7 +441,7 @@ export default function ProfessionalDashboard() {
 
                        <div className="py-24 text-center border border-[#e5e2df] bg-[#f6f3f0] opacity-40">
                           <Wallet className="w-12 h-12 mx-auto mb-4" />
-                          <p className="text-[10px] font-bold uppercase tracking-[0.3em]">Ledger Beta Access Reserved</p>
+                          <p className="text-[10px] font-bold uppercase tracking-[0.3em]">Detailed earnings coming soon</p>
                        </div>
                     </div>
                   )}
@@ -457,7 +457,7 @@ export default function ProfessionalDashboard() {
                        {reviews.length === 0 ? (
                          <div className="py-20 text-center opacity-40">
                             <MessageSquare className="w-12 h-12 mx-auto mb-4" />
-                            <p className="text-[9px] uppercase font-bold tracking-widest text-[#1c1c1a]">Zero Feedback Logs Detected</p>
+                            <p className="text-[9px] uppercase font-bold tracking-widest text-[#1c1c1a]">No reviews yet</p>
                          </div>
                        ) : (
                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -470,7 +470,7 @@ export default function ProfessionalDashboard() {
                                  </div>
                                  <p className="font-body text-sm text-[#44474c] leading-relaxed italic mb-8">"{rev.review}"</p>
                                  <div className="flex justify-between items-center border-t border-[#f6f3f0] pt-4">
-                                    <span className="text-[9px] font-black uppercase text-[#735c00]">Verified Operator</span>
+                                    <span className="text-[9px] font-black uppercase text-[#735c00]">Verified customer</span>
                                     <span className="text-[8px] font-bold text-[#c4c6cc]">{new Date(rev.created_at).toLocaleDateString()}</span>
                                  </div>
                               </div>
