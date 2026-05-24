@@ -14,6 +14,8 @@ const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const Landing = React.lazy(() => import("./pages/Landing"));
 const Auth = React.lazy(() => import("./pages/Auth"));
 const Setup = React.lazy(() => import("./pages/Setup"));
+const About = React.lazy(() => import("./pages/About"));
+const Help = React.lazy(() => import("./pages/Help"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({
@@ -40,6 +42,8 @@ const AnimatedRoutes = () => {
         <Route path="/dashboard" element={<ProtectedRoute><PageTransition><Dashboard /></PageTransition></ProtectedRoute>} />
         <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
         <Route path="/setup" element={<ProtectedRoute><PageTransition><Setup /></PageTransition></ProtectedRoute>} />
+        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/help" element={<PageTransition><Help /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>

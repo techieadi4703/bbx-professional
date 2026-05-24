@@ -40,11 +40,10 @@ export const CitySelector = () => {
             <button
               key={c}
               onClick={() => handleSelect(c)}
-              className={`p-3 text-sm font-body font-medium rounded-lg border transition-all ${
-                city === c 
-                  ? "border-[#735c00] bg-[#735c00]/5 text-[#735c00]" 
-                  : "border-[#e5e2df] hover:border-[#735c00] text-[#1c1c1a]"
-              }`}
+              className={`p-3 text-sm font-body font-medium rounded-lg border transition-all ${city === c
+                ? "border-[#735c00] bg-[#735c00]/5 text-[#735c00]"
+                : "border-[#e5e2df] hover:border-[#735c00] text-[#1c1c1a]"
+                }`}
             >
               {c}
             </button>
@@ -67,15 +66,14 @@ export const Header = () => {
   }, []);
 
   return (
-    <header 
-      className={`sticky top-0 z-50 transition-all duration-300 w-full ${
-        scrolled 
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e5e2df] text-[#1c1c1a] py-3" 
-          : "bg-transparent text-[#1c1c1a] py-5"
-      }`}
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 w-full ${scrolled
+        ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e5e2df] text-[#1c1c1a] py-3"
+        : "bg-transparent text-[#1c1c1a] py-5"
+        }`}
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between h-12">
-        
+
         {/* Left: Logo */}
         <Link to="/" className="flex items-center gap-1 group">
           <span className="text-2xl font-headline font-bold tracking-tight">BuildBazaarX</span>
@@ -86,17 +84,25 @@ export const Header = () => {
         <div className="hidden md:flex items-center gap-8">
           <nav className="flex items-center gap-8 font-body text-sm font-medium">
             <a href="https://buildbazaarx.com" target="_blank" rel="noreferrer" className="hover:opacity-70 transition-opacity">Book a service</a>
-            <a href="#about" className="hover:opacity-70 transition-opacity">About</a>
-            <a href="#help" className="hover:opacity-70 transition-opacity">Help</a>
+            <Link to="/about" className="hover:opacity-70 transition-opacity">About</Link>
+            <Link to="/help" className="hover:opacity-70 transition-opacity">Help</Link>
             <CitySelector />
           </nav>
-          
-          <Link 
-            to="/auth?mode=signup" 
-            className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
-          >
-            Apply now <span aria-hidden="true">&rarr;</span>
-          </Link>
+
+          <div className="flex items-center gap-6">
+            <Link
+              to="/auth?mode=login"
+              className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
+            >
+              Log in
+            </Link>
+            {/* <Link
+              to="/auth?mode=signup"
+              className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
+            >
+              Apply now <span aria-hidden="true">&rarr;</span>
+            </Link> */}
+          </div>
         </div>
 
         {/* Mobile Hamburger */}
@@ -112,17 +118,23 @@ export const Header = () => {
               <div className="flex flex-col h-full">
                 <div className="mt-8 flex flex-col gap-6 text-lg font-headline">
                   <a href="https://buildbazaarx.com" target="_blank" rel="noreferrer" className="hover:text-[#735c00]">Book a service</a>
-                  <a href="#about" className="hover:text-[#735c00]">About</a>
-                  <a href="#help" className="hover:text-[#735c00]">Help</a>
+                  <Link to="/about" className="hover:text-[#735c00]">About</Link>
+                  <Link to="/help" className="hover:text-[#735c00]">Help</Link>
                 </div>
-                
+
                 <div className="mt-8 border-t border-[#e5e2df] pt-8">
                   <CitySelector />
                 </div>
 
-                <div className="mt-auto mb-8">
-                  <Link 
-                    to="/auth?mode=signup" 
+                <div className="mt-auto mb-8 flex flex-col gap-3">
+                  <Link
+                    to="/auth?mode=login"
+                    className="w-full bg-[#f6f3f0] text-[#1c1c1a] border border-[#e5e2df] px-6 py-4 rounded-full text-center text-sm font-body font-bold hover:bg-[#e5e2df] transition-colors block"
+                  >
+                    Log in
+                  </Link>
+                  <Link
+                    to="/auth?mode=signup"
                     className="w-full bg-[#1c1c1a] text-white px-6 py-4 rounded-full text-center text-sm font-body font-bold hover:bg-[#735c00] transition-colors block"
                   >
                     Apply now &rarr;
