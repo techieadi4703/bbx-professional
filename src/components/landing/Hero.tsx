@@ -39,7 +39,7 @@ const LeadCaptureCard = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full relative z-10 border border-[#e5e2df]">
+    <div className="bg-white rounded-2xl shadow-2xl p-5 md:p-8 max-w-md w-full relative z-10 border border-[#e5e2df]">
       <h3 className="font-headline text-2xl tracking-tight mb-6">Start your application</h3>
       
       <form onSubmit={handleSubmit} className="space-y-5">
@@ -97,7 +97,7 @@ const LeadCaptureCard = () => {
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-[88vh] flex items-center pt-12 pb-12 md:pt-20 md:pb-16 overflow-hidden">
+    <section className="relative min-h-[88vh] flex items-center pt-8 pb-8 md:pt-20 md:pb-16 overflow-hidden">
       {/* Background dotted grid */}
       <div 
         className="absolute inset-0 pointer-events-none z-0" 
@@ -123,7 +123,7 @@ export const Hero = () => {
                 FOR PROFESSIONALS · PAN INDIA
               </span>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-headline tracking-tight leading-[1.1] text-[#1c1c1a]">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-headline tracking-tight leading-[1.1] text-[#1c1c1a]">
                 Build your career on India's most trusted construction-trades network.
               </h1>
               

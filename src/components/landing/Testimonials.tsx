@@ -87,11 +87,11 @@ export const Testimonials = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-[#fcf9f6] border-y border-[#e5e2df]">
+    <section className="py-10 md:py-24 bg-[#fcf9f6] border-y border-[#e5e2df]">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <Reveal width="100%">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-headline tracking-tight text-[#1c1c1a]">
+            <h2 className="text-3xl md:text-5xl font-headline tracking-tight text-[#1c1c1a]">
               Stories from our <span className="italic text-[#735c00]">partners</span>
             </h2>
           </div>
@@ -101,7 +101,7 @@ export const Testimonials = () => {
               <div className="flex -ml-4">
                 {testimonials.map((t, i) => (
                   <div key={i} className="pl-4 min-w-0 shrink-0 grow-0 basis-full md:basis-1/2 lg:basis-1/3">
-                    <div className="bg-white border border-[#e5e2df] p-8 rounded-2xl h-full flex flex-col justify-between group hover:border-[#735c00] transition-colors">
+                    <div className="bg-white border border-[#e5e2df] p-5 md:p-8 rounded-2xl h-full flex flex-col justify-between group hover:border-[#735c00] transition-colors">
                       <div>
                         <div className="flex items-center gap-4 mb-6">
                           <img src={t.photoUrl} alt={t.name} className="w-16 h-16 rounded-full object-cover bg-[#f6f3f0]" />
@@ -113,7 +113,7 @@ export const Testimonials = () => {
                             <p className="text-xs font-bold uppercase tracking-widest text-[#74777d] mt-1">{t.trade} · {t.city}</p>
                           </div>
                         </div>
-                        <p className="font-headline italic text-2xl text-[#1c1c1a] leading-snug mb-8">"{t.quote}"</p>
+                        <p className="font-headline italic text-lg md:text-2xl text-[#1c1c1a] leading-snug mb-8">"{t.quote}"</p>
                       </div>
                       
                       <div className="bg-[#fcf9f6] rounded-xl p-4 flex items-center justify-between border border-[#e5e2df]">

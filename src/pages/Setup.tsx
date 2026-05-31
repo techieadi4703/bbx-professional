@@ -122,7 +122,7 @@ export default function ProfessionalSetup() {
         .font-body { font-family: 'Manrope', sans-serif; }
       `}</style>
       
-      <div className="bg-[#fcf9f6] text-[#1c1c1a] min-h-screen font-body w-full pb-20 relative overflow-hidden flex items-center justify-center pt-16 md:pt-32">
+      <div className="bg-[#fcf9f6] text-[#1c1c1a] min-h-screen font-body w-full pb-20 relative overflow-hidden flex items-center justify-center pt-8 md:pt-32">
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
         
         <div className="w-full max-w-2xl px-6 relative z-10">
@@ -138,7 +138,7 @@ export default function ProfessionalSetup() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white border border-[#e5e2df] p-8 md:p-10 rounded-2xl shadow-2xl hover:border-[#735c00] transition-colors"
+            className="bg-white border border-[#e5e2df] p-5 md:p-10 rounded-2xl shadow-2xl hover:border-[#735c00] transition-colors"
           >
             <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#e5e2df]">
               <ShieldCheck className="w-5 h-5 text-[#735c00]" />

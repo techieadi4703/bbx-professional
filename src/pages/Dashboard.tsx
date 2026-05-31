@@ -217,7 +217,7 @@ export default function ProfessionalDashboard() {
         {/* Subtle grid background */}
         <div className="absolute inset-0 pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
         
-        <main className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 md:py-24 relative z-10">
+        <main className="max-w-[1440px] mx-auto px-4 md:px-12 py-6 md:py-24 relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
             
             {/* Sidebar Navigation */}
@@ -284,7 +284,7 @@ export default function ProfessionalDashboard() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="bg-white border border-[#e5e2df] p-8 md:p-12 rounded-2xl shadow-xl shadow-black/5 min-h-[600px]"
+                  className="bg-white border border-[#e5e2df] p-4 md:p-12 rounded-2xl shadow-xl shadow-black/5 min-h-[600px]"
                 >
                   
                   {/* PROFILE TAB */}
@@ -392,7 +392,7 @@ export default function ProfessionalDashboard() {
                          
                          {/* Add Slot Form */}
                          <div className="xl:col-span-5 space-y-6">
-                            <div className="bg-[#fcf9f6] p-8 rounded-2xl border border-[#e5e2df]">
+                            <div className="bg-[#fcf9f6] p-5 md:p-8 rounded-2xl border border-[#e5e2df]">
                               <h3 className="text-lg font-headline font-bold mb-6 flex items-center gap-2">
                                 <Calendar className="w-5 h-5 text-[#735c00]" />
                                 Add Availability
@@ -514,7 +514,7 @@ export default function ProfessionalDashboard() {
                        ) : (
                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {reviews.map((rev) => (
-                              <div key={rev.id} className="p-8 border border-[#e5e2df] rounded-2xl bg-white hover:border-[#735c00] transition-all shadow-sm">
+                              <div key={rev.id} className="p-5 md:p-8 border border-[#e5e2df] rounded-2xl bg-white hover:border-[#735c00] transition-all shadow-sm">
                                  <div className="flex items-center gap-1 mb-4">
                                     {[...Array(5)].map((_, i) => (
                                       <Star key={i} className={`w-4 h-4 ${i < rev.rating ? "text-[#735c00] fill-current" : "text-[#e5e2df]"}`} />

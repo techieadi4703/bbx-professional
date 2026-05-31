@@ -20,14 +20,14 @@ export default function About() {
 
       <div className="bg-[#fcf9f6] min-h-screen text-[#1c1c1a] font-body">
         {/* Hero Section */}
-        <section className="pt-32 pb-20 px-6 md:px-12 relative overflow-hidden">
+        <section className="pt-16 pb-10 md:pt-32 md:pb-20 px-6 md:px-12 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <Reveal width="100%">
               <span className="inline-block py-1.5 px-3 bg-[#735c00]/10 text-[#735c00] text-[10px] font-bold uppercase tracking-widest rounded-full border border-[#735c00]/20 mb-6">
                 OUR MISSION
               </span>
-              <h1 className="text-5xl md:text-7xl font-headline tracking-tight leading-none mb-8">
+              <h1 className="text-4xl md:text-7xl font-headline tracking-tight leading-none mb-8">
                 Empowering India's <span className="italic">Builders</span>
               </h1>
               <p className="text-lg md:text-xl text-[#74777d] leading-relaxed max-w-2xl mx-auto">
@@ -38,7 +38,7 @@ export default function About() {
         </section>
 
         {/* Pillars Section */}
-        <section className="py-24 bg-white border-y border-[#e5e2df]">
+        <section className="py-10 md:py-24 bg-white border-y border-[#e5e2df]">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12">
             <Reveal width="100%">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -75,7 +75,7 @@ export default function About() {
         </section>
 
         {/* Story Section */}
-        <section className="py-24 px-6 md:px-12">
+        <section className="py-10 md:py-24 px-6 md:px-12">
           <div className="max-w-4xl mx-auto">
             <Reveal width="100%">
               <h2 className="text-4xl font-headline tracking-tight mb-8">The <span className="italic">Story</span></h2>

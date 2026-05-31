@@ -68,16 +68,16 @@ export const Header = () => {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 w-full ${scrolled
-        ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e5e2df] text-[#1c1c1a] py-3"
-        : "bg-transparent text-[#1c1c1a] py-5"
+        ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e5e2df] text-[#1c1c1a] py-2.5 md:py-3"
+        : "bg-transparent text-[#1c1c1a] py-3 md:py-5"
         }`}
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between h-12">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-12 flex items-center justify-between h-10 md:h-12">
 
         {/* Left: Logo */}
-        <Link to="/" className="flex items-center gap-1 group">
-          <span className="text-2xl font-headline font-bold tracking-tight">BuildBazaarX</span>
-          <span className="text-xl font-headline italic text-[#735c00]">Professional</span>
+        <Link to="/" className="flex flex-wrap items-baseline gap-x-1 group">
+          <span className="text-xl sm:text-2xl font-headline font-bold tracking-tight">BuildBazaarX</span>
+          <span className="text-sm sm:text-xl font-headline italic text-[#735c00]">Professional</span>
         </Link>
 
         {/* Desktop Nav */}
