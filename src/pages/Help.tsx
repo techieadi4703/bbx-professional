@@ -79,7 +79,7 @@ export default function Help() {
           {/* Contact Support */}
           <div className="lg:col-span-4">
             <Reveal width="100%">
-              <div className="bg-white border border-[#e5e2df] p-5 md:p-8 rounded-2xl shadow-sm sticky top-32">
+              <div className="bg-white border border-[#e5e2df] p-5 md:p-8 rounded-2xl shadow-sm md:sticky md:top-32">
                 <h3 className="text-2xl font-headline tracking-tight mb-6">Contact <span className="italic">Support</span></h3>
                 <p className="text-[#74777d] text-sm mb-8">
                   Our professional support team is available Monday through Saturday, 9 AM to 7 PM.

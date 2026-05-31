@@ -122,7 +122,7 @@ export default function ProfessionalSetup() {
         .font-body { font-family: 'Manrope', sans-serif; }
       `}</style>
       
-      <div className="bg-[#fcf9f6] text-[#1c1c1a] min-h-screen font-body w-full pb-20 relative overflow-hidden flex items-center justify-center pt-8 md:pt-32">
+      <div className="bg-[#fcf9f6] text-[#1c1c1a] min-h-screen font-body w-full pb-20 relative overflow-hidden flex items-center justify-center pt-2 pb-20 md:pt-32">
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
         
         <div className="w-full max-w-2xl px-6 relative z-10">
@@ -138,15 +138,15 @@ export default function ProfessionalSetup() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white border border-[#e5e2df] p-5 md:p-10 rounded-2xl shadow-2xl hover:border-[#735c00] transition-colors"
+            className="bg-white border border-[#e5e2df] p-4 md:p-10 rounded-2xl shadow-2xl hover:border-[#735c00] transition-colors"
           >
             <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#e5e2df]">
               <ShieldCheck className="w-5 h-5 text-[#735c00]" />
               <h2 className="text-sm font-bold uppercase tracking-widest text-[#1c1c1a]">Identity & Workspace</h2>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-5">
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Full Name</label>
                   <div className="relative">
@@ -157,7 +157,7 @@ export default function ProfessionalSetup() {
                       value={form.fullName} 
                       onChange={(e) => setForm({...form, fullName: e.target.value})} 
                       placeholder="Your name" 
-                      className="w-full pl-11 pr-4 py-2.5 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
+                      className="w-full pl-11 pr-4 py-2 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
                     />
                   </div>
                 </div>
@@ -165,7 +165,7 @@ export default function ProfessionalSetup() {
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Profession</label>
                   <Select required value={form.profession} onValueChange={(val) => setForm({...form, profession: val})}>
-                    <SelectTrigger className="w-full h-[42px] bg-[#f6f3f0] border-transparent focus:border-[#735c00] rounded-lg font-bold text-sm">
+                    <SelectTrigger className="w-full h-[38px] sm:h-[42px] bg-[#f6f3f0] border-transparent focus:border-[#735c00] rounded-lg font-bold text-sm">
                       <SelectValue placeholder="What do you do?" />
                     </SelectTrigger>
                     <SelectContent>
@@ -186,7 +186,7 @@ export default function ProfessionalSetup() {
                       value={form.phone} 
                       onChange={(e) => setForm({...form, phone: e.target.value})} 
                       placeholder="+91" 
-                      className="w-full pl-11 pr-4 py-2.5 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
+                      className="w-full pl-11 pr-4 py-2 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
                     />
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export default function ProfessionalSetup() {
                       value={form.city} 
                       onChange={(e) => setForm({...form, city: e.target.value})} 
                       placeholder="e.g. Jaipur" 
-                      className="w-full pl-11 pr-4 py-2.5 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
+                      className="w-full pl-11 pr-4 py-2 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
                     />
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export default function ProfessionalSetup() {
                       value={form.hourlyRate} 
                       onChange={(e) => setForm({...form, hourlyRate: e.target.value})} 
                       placeholder="e.g. 500" 
-                      className="w-full pl-11 pr-4 py-2.5 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
+                      className="w-full pl-11 pr-4 py-2 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
                     />
                   </div>
                 </div>
@@ -231,7 +231,7 @@ export default function ProfessionalSetup() {
                       value={form.dailyRate} 
                       onChange={(e) => setForm({...form, dailyRate: e.target.value})} 
                       placeholder="e.g. 2500" 
-                      className="w-full pl-11 pr-4 py-2.5 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
+                      className="w-full pl-11 pr-4 py-2 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
                     />
                   </div>
                 </div>
@@ -246,7 +246,7 @@ export default function ProfessionalSetup() {
                     value={form.address} 
                     onChange={(e) => setForm({...form, address: e.target.value})} 
                     placeholder="Shop / Office No, Area..." 
-                    className="w-full pl-11 pr-4 py-2.5 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
+                    className="w-full pl-11 pr-4 py-2 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
                   />
                 </div>
               </div>
@@ -266,7 +266,7 @@ export default function ProfessionalSetup() {
               <button 
                 type="submit" 
                 disabled={isLoading} 
-                className="w-full py-4 mt-2 bg-[#1c1c1a] text-white rounded-full font-bold hover:bg-[#735c00] transition-colors flex items-center justify-center gap-2 text-sm shadow-md"
+                className="w-full py-3 mt-2 bg-[#1c1c1a] text-white rounded-full font-bold hover:bg-[#735c00] transition-colors flex items-center justify-center gap-2 text-sm shadow-md"
               >
                 {isLoading ? "Setting up workspace..." : "Complete Setup"}
                 <ArrowRight className="w-4 h-4" />

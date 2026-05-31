@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, MapPin, ChevronDown, X } from "lucide-react";
 import { CITIES } from "@/lib/professions";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useAuth } from "@/contexts/AuthContext";
 
 export const CitySelector = () => {
   const [city, setCity] = useState("Varanasi");
@@ -56,6 +57,10 @@ export const CitySelector = () => {
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const location = useLocation();
+  const isDashboard = location.pathname === "/dashboard";
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,18 +89,25 @@ export const Header = () => {
         <div className="hidden md:flex items-center gap-8">
           <nav className="flex items-center gap-8 font-body text-sm font-medium">
             <a href="https://buildbazaarx.com" target="_blank" rel="noreferrer" className="hover:opacity-70 transition-opacity">Book a service</a>
-            <Link to="/about" className="hover:opacity-70 transition-opacity">About</Link>
-            <Link to="/help" className="hover:opacity-70 transition-opacity">Help</Link>
             <CitySelector />
           </nav>
 
           <div className="flex items-center gap-6">
-            <Link
-              to="/auth?mode=login"
-              className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
-            >
-              Log in
-            </Link>
+            {!isAuthenticated ? (
+              <Link
+                to="/auth?mode=login"
+                className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
+              >
+                Log in
+              </Link>
+            ) : (
+              <Link
+                to="/dashboard"
+                className="bg-[#735c00] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#1c1c1a] transition-colors flex items-center gap-2"
+              >
+                Dashboard
+              </Link>
+            )}
             {/* <Link
               to="/auth?mode=signup"
               className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
@@ -106,10 +118,11 @@ export const Header = () => {
         </div>
 
         {/* Mobile Hamburger */}
-        <div className="md:hidden flex items-center">
-          <Sheet>
+        {!isDashboard && (
+          <div className="md:hidden flex items-center">
+          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
-              <button className="p-2 -mr-2">
+              <button className="p-2 -mr-2" onClick={() => setSheetOpen(true)}>
                 <Menu className="w-6 h-6" />
                 <span className="sr-only">Open Menu</span>
               </button>
@@ -117,9 +130,7 @@ export const Header = () => {
             <SheetContent side="right" className="bg-white border-l-[#e5e2df] text-[#1c1c1a] p-6 w-full sm:w-[400px]">
               <div className="flex flex-col h-full">
                 <div className="mt-8 flex flex-col gap-6 text-lg font-headline">
-                  <a href="https://buildbazaarx.com" target="_blank" rel="noreferrer" className="hover:text-[#735c00]">Book a service</a>
-                  <Link to="/about" className="hover:text-[#735c00]">About</Link>
-                  <Link to="/help" className="hover:text-[#735c00]">Help</Link>
+                  <a href="https://buildbazaarx.com" target="_blank" rel="noreferrer" className="hover:text-[#735c00]" onClick={() => setSheetOpen(false)}>Book a service</a>
                 </div>
 
                 <div className="mt-8 border-t border-[#e5e2df] pt-8">
@@ -127,23 +138,38 @@ export const Header = () => {
                 </div>
 
                 <div className="mt-auto mb-8 flex flex-col gap-3">
-                  <Link
-                    to="/auth?mode=login"
-                    className="w-full bg-[#f6f3f0] text-[#1c1c1a] border border-[#e5e2df] px-6 py-4 rounded-full text-center text-sm font-body font-bold hover:bg-[#e5e2df] transition-colors block"
-                  >
-                    Log in
-                  </Link>
-                  <Link
-                    to="/auth?mode=signup"
-                    className="w-full bg-[#1c1c1a] text-white px-6 py-4 rounded-full text-center text-sm font-body font-bold hover:bg-[#735c00] transition-colors block"
-                  >
-                    Apply now &rarr;
-                  </Link>
+                  {!isAuthenticated ? (
+                    <>
+                      <Link
+                        to="/auth?mode=login"
+                        className="w-full bg-[#f6f3f0] text-[#1c1c1a] border border-[#e5e2df] px-6 py-4 rounded-full text-center text-sm font-body font-bold hover:bg-[#e5e2df] transition-colors block"
+                        onClick={() => setSheetOpen(false)}
+                      >
+                        Log in
+                      </Link>
+                      <Link
+                        to="/auth?mode=signup"
+                        className="w-full bg-[#1c1c1a] text-white px-6 py-4 rounded-full text-center text-sm font-body font-bold hover:bg-[#735c00] transition-colors block"
+                        onClick={() => setSheetOpen(false)}
+                      >
+                        Apply now &rarr;
+                      </Link>
+                    </>
+                  ) : (
+                    <Link
+                      to="/dashboard"
+                      className="w-full bg-[#735c00] text-white px-6 py-4 rounded-full text-center text-sm font-body font-bold hover:bg-[#1c1c1a] transition-colors block"
+                      onClick={() => setSheetOpen(false)}
+                    >
+                      Dashboard
+                    </Link>
+                  )}
                 </div>
               </div>
             </SheetContent>
           </Sheet>
         </div>
+        )}
 
       </div>
     </header>

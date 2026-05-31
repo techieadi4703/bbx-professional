@@ -217,7 +217,7 @@ export default function ProfessionalDashboard() {
         {/* Subtle grid background */}
         <div className="absolute inset-0 pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
         
-        <main className="max-w-[1440px] mx-auto px-4 md:px-12 py-6 md:py-24 relative z-10">
+        <main className="max-w-[1440px] mx-auto px-4 md:px-12 pt-2 pb-6 md:py-24 relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
             
             {/* Sidebar Navigation */}
@@ -295,30 +295,37 @@ export default function ProfessionalDashboard() {
                            <h2 className="text-3xl font-headline tracking-tight mb-2">My <span className="italic">Profile</span></h2>
                            <p className="text-sm font-body text-[#74777d]">Manage your public professional information and rates.</p>
                         </div>
-                        <div className="flex items-center gap-3 shrink-0">
+                        <div className="flex items-center gap-2 sm:gap-3 shrink-0 flex-wrap">
                            <span className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Status:</span>
                            <button 
                              onClick={() => setProfile({...profile, is_available: !profile.is_available})}
-                             className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
+                             className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
                                profile.is_available 
                                  ? "bg-[#735c00] text-white shadow-md shadow-[#735c00]/20" 
                                  : "bg-[#f6f3f0] text-[#74777d] hover:bg-[#e5e2df]"
                              }`}
                            >
-                             {profile.is_available ? "Available for Jobs" : "Not Available"}
+                             {profile.is_available ? "Available" : "Unavailable"}
+                           </button>
+                           <button 
+                             onClick={handleLogout}
+                             className="lg:hidden px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest bg-red-50 text-red-600 border border-red-100 hover:bg-red-100 transition-all flex items-center gap-1.5"
+                           >
+                             <LogOut className="w-3.5 h-3.5" />
+                             Log out
                            </button>
                         </div>
                       </header>
 
-                      <form onSubmit={handleUpdateProfile} className="space-y-10">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <form onSubmit={handleUpdateProfile} className="space-y-6 md:space-y-10">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 md:gap-6">
                            
                            {/* Full Name */}
                            <div className="space-y-2 opacity-70">
                              <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Full Name</label>
                              <div className="relative">
                                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input value={profile.full_name} disabled className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent rounded-lg text-sm font-bold outline-none cursor-not-allowed" />
+                               <input value={profile.full_name} disabled className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent rounded-lg text-sm font-bold outline-none cursor-not-allowed" />
                              </div>
                            </div>
                            
@@ -327,7 +334,7 @@ export default function ProfessionalDashboard() {
                              <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Trade *</label>
                              <div className="relative">
                                <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input value={profile.profession} onChange={e => setProfile({...profile, profession: e.target.value})} className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
+                               <input value={profile.profession} onChange={e => setProfile({...profile, profession: e.target.value})} className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
                              </div>
                            </div>
                            
@@ -336,7 +343,7 @@ export default function ProfessionalDashboard() {
                              <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Hourly Rate (₹)</label>
                              <div className="relative">
                                <IndianRupee className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input type="number" value={profile.hourly_rate} onChange={e => setProfile({...profile, hourly_rate: parseInt(e.target.value)})} className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
+                               <input type="number" value={profile.hourly_rate} onChange={e => setProfile({...profile, hourly_rate: parseInt(e.target.value)})} className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
                              </div>
                            </div>
 
@@ -344,7 +351,7 @@ export default function ProfessionalDashboard() {
                              <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Daily Rate (₹)</label>
                              <div className="relative">
                                <IndianRupee className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input type="number" value={profile.daily_rate} onChange={e => setProfile({...profile, daily_rate: parseInt(e.target.value)})} className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
+                               <input type="number" value={profile.daily_rate} onChange={e => setProfile({...profile, daily_rate: parseInt(e.target.value)})} className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
                              </div>
                            </div>
 
@@ -353,7 +360,7 @@ export default function ProfessionalDashboard() {
                              <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">City</label>
                              <div className="relative">
                                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input value={profile.city} onChange={e => setProfile({...profile, city: e.target.value})} className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
+                               <input value={profile.city} onChange={e => setProfile({...profile, city: e.target.value})} className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
                              </div>
                            </div>
                         </div>
@@ -361,12 +368,12 @@ export default function ProfessionalDashboard() {
                         <div className="space-y-6">
                            <div className="space-y-2">
                              <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Skills (comma-separated)</label>
-                             <input value={skillsInput} onChange={e => setSkillsInput(e.target.value)} placeholder="Structural Wiring, Civil Foundations..." className="w-full px-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
+                             <input value={skillsInput} onChange={e => setSkillsInput(e.target.value)} placeholder="Structural Wiring, Civil Foundations..." className="w-full px-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
                            </div>
 
                            <div className="space-y-2">
                              <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Professional Bio</label>
-                             <textarea value={profile.bio || ""} onChange={e => setProfile({...profile, bio: e.target.value})} rows={3} placeholder="A brief summary of your expertise and experience..." className="w-full px-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors resize-none" />
+                             <textarea value={profile.bio || ""} onChange={e => setProfile({...profile, bio: e.target.value})} rows={3} placeholder="A brief summary of your expertise and experience..." className="w-full px-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors resize-none" />
                            </div>
                         </div>
 
