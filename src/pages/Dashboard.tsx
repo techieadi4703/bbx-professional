@@ -226,7 +226,7 @@ export default function ProfessionalDashboard() {
                 PROFESSIONAL PORTAL
               </span>
               
-              <h1 className="text-4xl lg:text-5xl font-headline tracking-tight leading-none mb-4 break-words">
+              <h1 className="text-4xl lg:text-5xl font-headline tracking-tight leading-tight mb-4 break-words">
                 Hi, {profile.full_name?.split(' ')[0]} <span className="italic opacity-70">👋</span>
               </h1>
               
@@ -450,7 +450,7 @@ export default function ProfessionalDashboard() {
                                         </p>
                                       </div>
                                     </div>
-                                    <div className="flex items-center justify-end">
+                                    <div className="flex items-center sm:justify-end justify-start w-full sm:w-auto">
                                        {slot.is_booked ? (
                                          <Badge className="bg-[#735c00] text-white font-bold text-xs uppercase tracking-widest px-3 py-1.5">Booked</Badge>
                                        ) : (
@@ -550,8 +550,8 @@ export default function ProfessionalDashboard() {
         </main>
 
         {/* Mobile Bottom Navigation */}
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#fcf9f6] border-t border-[#e5e2df] z-50 px-6 py-2 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] pb-[env(safe-area-inset-bottom)]">
-          <nav className="flex items-center justify-between px-2">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#fcf9f6] border-t border-[#e5e2df] z-50 px-3 sm:px-6 py-2 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] pb-[env(safe-area-inset-bottom)]">
+          <nav className="flex items-center justify-around">
             {[
               { id: "slots", label: "Schedule", icon: Calendar },
               { id: "earnings", label: "Earnings", icon: Wallet },

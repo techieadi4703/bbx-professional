@@ -27,7 +27,7 @@ export default function About() {
               <span className="inline-block py-1.5 px-3 bg-[#735c00]/10 text-[#735c00] text-[10px] font-bold uppercase tracking-widest rounded-full border border-[#735c00]/20 mb-6">
                 OUR MISSION
               </span>
-              <h1 className="text-4xl md:text-7xl font-headline tracking-tight leading-none mb-8">
+              <h1 className="text-4xl md:text-7xl font-headline tracking-tight leading-tight mb-8">
                 Empowering India's <span className="italic">Builders</span>
               </h1>
               <p className="text-lg md:text-xl text-[#74777d] leading-relaxed max-w-2xl mx-auto">

@@ -122,12 +122,12 @@ export default function ProfessionalSetup() {
         .font-body { font-family: 'Manrope', sans-serif; }
       `}</style>
       
-      <div className="bg-[#fcf9f6] text-[#1c1c1a] min-h-screen font-body w-full pb-20 relative overflow-hidden flex items-center justify-center pt-2 pb-20 md:pt-32">
+      <div className="bg-[#fcf9f6] text-[#1c1c1a] min-h-screen font-body w-full relative overflow-hidden flex flex-col items-center justify-start py-8 md:py-24">
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
         
         <div className="w-full max-w-2xl px-6 relative z-10">
           <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-headline tracking-tight leading-none mb-3">
+            <h1 className="text-4xl md:text-5xl font-headline tracking-tight leading-tight mb-3">
               Professional <span className="italic">Onboarding</span>
             </h1>
             <p className="text-sm font-body text-[#74777d] leading-relaxed max-w-md mx-auto">

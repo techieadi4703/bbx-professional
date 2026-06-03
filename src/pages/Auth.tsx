@@ -132,7 +132,7 @@ export default function ProfessionalAuth() {
             
             <div className="w-full md:w-1/3 shrink-0 md:sticky md:top-32">
                <span className="font-body uppercase tracking-[0.2em] text-[10px] text-[#735c00] mb-4 block font-bold">FOR PROFESSIONALS</span>
-               <h1 className="text-4xl sm:text-5xl md:text-7xl font-headline tracking-tight leading-none mb-6">
+               <h1 className="text-4xl sm:text-5xl md:text-7xl font-headline tracking-tight leading-tight mb-6">
                 {isLogin ? "Welcome" : "Join us"} <br/><span className="italic">{isLogin ? "back." : "today."}</span>
               </h1>
                <div className="w-12 h-[1px] bg-[#c4c6cc] mb-6"></div>

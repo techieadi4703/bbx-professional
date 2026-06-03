@@ -46,7 +46,7 @@ export default function Help() {
         {/* Header */}
         <section className="pt-16 pb-8 px-6 md:px-12 text-center border-b border-[#e5e2df]">
           <Reveal width="100%">
-            <h1 className="text-4xl md:text-6xl font-headline tracking-tight leading-none mb-6">
+            <h1 className="text-4xl md:text-6xl font-headline tracking-tight leading-tight mb-6">
               How can we <span className="italic">help?</span>
             </h1>
             <p className="text-lg text-[#74777d] max-w-xl mx-auto">
