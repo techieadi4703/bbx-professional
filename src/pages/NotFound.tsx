@@ -46,7 +46,7 @@ const NotFound = () => {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="mb-12 inline-block"
           >
-            <div className="w-32 h-32 bg-secondary/50 backdrop-blur-xl rounded-[2.5rem] flex items-center justify-center shadow-2xl border border-white/10 mx-auto">
+            <div className="w-32 h-32 bg-secondary/50 backdrop-blur-xl rounded-[2.5rem] flex items-center justify-center shadow-sm border border-white/10 mx-auto">
               <Ghost className="w-16 h-16 text-primary" />
             </div>
           </motion.div>
@@ -71,7 +71,7 @@ const NotFound = () => {
 
         <Reveal width="100%" direction="up" delay={0.4}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="h-16 px-10 rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 group relative overflow-hidden w-full sm:w-auto" asChild>
+            <Button size="lg" className="h-16 px-10 rounded-2xl font-black uppercase tracking-widest text-xs shadow-sm shadow-primary/20 group relative overflow-hidden w-full sm:w-auto" asChild>
               <Link to="/">
                 <span className="relative z-10 flex items-center gap-3">
                   <Home className="w-5 h-5" />

@@ -118,25 +118,19 @@ export default function ProfessionalAuth() {
 
   return (
     <Layout>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap');
-        .font-headline { font-family: 'Newsreader', serif; }
-        .font-body { font-family: 'Manrope', sans-serif; }
-      `}</style>
-      
-      <div className="bg-[#fcf9f6] text-[#1c1c1a] min-h-screen font-body w-full pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
+      <div className="bg-surface text-on-surface min-h-screen font-body w-full pb-20 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none z-0 bg-blueprint opacity-30" />
         
-        <main className="max-w-[1440px] mx-auto px-4 md:px-12 pt-2 pb-8 md:py-24 relative z-10">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-24 items-start">
+        <main className="max-w-[1440px] mx-auto px-4 md:px-12 py-8 relative z-10">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-24 items-center min-h-[75vh]">
             
-            <div className="w-full md:w-1/3 shrink-0 md:sticky md:top-32">
-               <span className="font-body uppercase tracking-[0.2em] text-[10px] text-[#735c00] mb-4 block font-bold">FOR PROFESSIONALS</span>
+            <div className="w-full md:w-1/3 shrink-0">
+               <span className="font-body uppercase tracking-[0.2em] text-[10px] text-secondary mb-4 block font-bold">FOR PROFESSIONALS</span>
                <h1 className="text-4xl sm:text-5xl md:text-7xl font-headline tracking-tight leading-tight mb-6">
                 {isLogin ? "Welcome" : "Join us"} <br/><span className="italic">{isLogin ? "back." : "today."}</span>
               </h1>
-               <div className="w-12 h-[1px] bg-[#c4c6cc] mb-6"></div>
-              <p className="text-lg font-body text-[#44474c] leading-relaxed max-w-sm">
+               <div className="w-12 h-[1px] bg-surface-container-highest mb-6"></div>
+              <p className="text-lg font-body text-on-surface-variant leading-relaxed max-w-sm">
                 {isLogin 
                   ? "Log in to manage your jobs, schedule, and earnings." 
                   : "Join India's most trusted network of construction and trade professionals."}
@@ -147,84 +141,94 @@ export default function ProfessionalAuth() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white border border-[#e5e2df] p-5 md:p-12 rounded-2xl shadow-2xl hover:border-[#735c00] transition-colors relative z-10"
+                className="bg-[#C5A572] dark:bg-[#1C2333] p-6 md:p-12 rounded-[3rem] shadow-xl border border-white/20 relative overflow-hidden z-10 w-full"
               >
-                <form onSubmit={handleAuth} className="space-y-5">
-                  {!isLogin && (
-                    <>
-                      <div className="space-y-2">
-                        <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Full Name</label>
-                        <div className="relative">
-                          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                          <input required type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="e.g. Aditya Srivastava" className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
-                        </div>
-                      </div>
+                {/* Visual Blueprint accents */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-black/5 dark:bg-white/5 rounded-bl-[4rem] flex items-center justify-center border-l border-b border-black/10 dark:border-white/10 pointer-events-none">
+                  <span className="font-mono text-[10px] rotate-90 tracking-[0.5em] opacity-20 text-black dark:text-white uppercase">Form_Asset</span>
+                </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Phone Number</label>
+                <div className="relative z-10">
+                  <form onSubmit={handleAuth} className="space-y-6">
+                    {!isLogin && (
+                      <>
+                        <div className="space-y-3">
+                          <label className="text-[10px] uppercase font-mono tracking-widest text-black/60 dark:text-white/60 ml-1">Full Name</label>
                           <div className="relative">
-                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                            <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 98765 XXXXX" className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
+                            <User className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-black/40 dark:text-white/40" />
+                            <input required type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="e.g. Aditya Srivastava" className="h-11 sm:h-14 w-full rounded-2xl bg-[#E5DACE] dark:bg-[#20293A] border-transparent focus:outline-none focus:ring-2 focus:ring-black/5 dark:focus:ring-white/5 focus:bg-white dark:focus:bg-[#2a364a] transition-all text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 shadow-sm pl-12 pr-5" />
                           </div>
                         </div>
 
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">City</label>
-                          <div className="relative">
-                            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                            <input required type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="e.g. Jaipur" className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-3">
+                            <label className="text-[10px] uppercase font-mono tracking-widest text-black/60 dark:text-white/60 ml-1">Phone Number</label>
+                            <div className="relative">
+                              <Phone className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-black/40 dark:text-white/40" />
+                              <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 98765 XXXXX" className="h-11 sm:h-14 w-full rounded-2xl bg-[#E5DACE] dark:bg-[#20293A] border-transparent focus:outline-none focus:ring-2 focus:ring-black/5 dark:focus:ring-white/5 focus:bg-white dark:focus:bg-[#2a364a] transition-all text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 shadow-sm pl-12 pr-5" />
+                            </div>
+                          </div>
+
+                          <div className="space-y-3">
+                            <label className="text-[10px] uppercase font-mono tracking-widest text-black/60 dark:text-white/60 ml-1">City</label>
+                            <div className="relative">
+                              <MapPin className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-black/40 dark:text-white/40" />
+                              <input required type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="e.g. Jaipur" className="h-11 sm:h-14 w-full rounded-2xl bg-[#E5DACE] dark:bg-[#20293A] border-transparent focus:outline-none focus:ring-2 focus:ring-black/5 dark:focus:ring-white/5 focus:bg-white dark:focus:bg-[#2a364a] transition-all text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 shadow-sm pl-12 pr-5" />
+                            </div>
                           </div>
                         </div>
+                      </>
+                    )}
+
+                    <div className="space-y-3">
+                      <label className="text-[10px] uppercase font-mono tracking-widest text-black/60 dark:text-white/60 ml-1">Email</label>
+                      <div className="relative">
+                        <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-black/40 dark:text-white/40" />
+                        <input 
+                          required 
+                          type="email" 
+                          autoComplete="off"
+                          value={email} 
+                          onChange={(e) => setEmail(e.target.value)} 
+                          placeholder="name@provider.com" 
+                          className="h-11 sm:h-14 w-full rounded-2xl bg-[#E5DACE] dark:bg-[#20293A] border-transparent focus:outline-none focus:ring-2 focus:ring-black/5 dark:focus:ring-white/5 focus:bg-white dark:focus:bg-[#2a364a] transition-all text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 shadow-sm pl-12 pr-5" 
+                        />
                       </div>
-                    </>
-                  )}
-
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Email</label>
-                    <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                      <input 
-                        required 
-                        type="email" 
-                        autoComplete="off"
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        placeholder="name@provider.com" 
-                        className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
-                      />
                     </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Password</label>
-                    <div className="relative">
-                      <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                      <input 
-                        required 
-                        type="password" 
-                        autoComplete="new-password"
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        placeholder="••••••••" 
-                        className="w-full pl-11 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" 
-                      />
+                    <div className="space-y-3">
+                      <label className="text-[10px] uppercase font-mono tracking-widest text-black/60 dark:text-white/60 ml-1">Password</label>
+                      <div className="relative">
+                        <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-black/40 dark:text-white/40" />
+                        <input 
+                          required 
+                          type="password" 
+                          autoComplete="new-password"
+                          value={password} 
+                          onChange={(e) => setPassword(e.target.value)} 
+                          placeholder="••••••••" 
+                          className="h-11 sm:h-14 w-full rounded-2xl bg-[#E5DACE] dark:bg-[#20293A] border-transparent focus:outline-none focus:ring-2 focus:ring-black/5 dark:focus:ring-white/5 focus:bg-white dark:focus:bg-[#2a364a] transition-all text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 shadow-sm pl-12 pr-5" 
+                        />
+                      </div>
                     </div>
+
+                    <button type="submit" disabled={isLoading} className="w-full h-14 sm:h-16 rounded-full text-lg font-bold shadow-[0_20px_40px_rgba(0,0,0,0.3)] bg-black dark:bg-[#4A7DE3] text-white hover:bg-black/80 dark:hover:bg-[#4A7DE3]/80 group relative overflow-hidden transition-all duration-500 mt-8 flex items-center justify-center gap-2">
+                      <span className="relative z-10 flex items-center gap-2">
+                        {isLoading ? "Processing..." : isLogin ? "Log in" : "Create my account"}
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </button>
+                  </form>
+
+                  <div className="mt-12 pt-8 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <span className="text-sm font-medium text-black/60 dark:text-white/60">
+                      {isLogin ? "New professional?" : "Already have an account?"}
+                    </span>
+                    <button type="button" onClick={() => setIsLogin(!isLogin)} className="text-sm font-bold text-black dark:text-white hover:underline underline-offset-4">
+                      {isLogin ? "Create an account" : "Log in"}
+                    </button>
                   </div>
-
-                  <button type="submit" disabled={isLoading} className="w-full py-4 mt-2 bg-[#1c1c1a] text-white rounded-full font-bold hover:bg-[#735c00] transition-colors flex items-center justify-center gap-2 text-sm shadow-md">
-                    {isLoading ? "Signing you in…" : isLogin ? "Log in" : "Create my account"}
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </form>
-
-                <div className="mt-12 pt-8 border-t border-[#e5e2df] flex items-center justify-between">
-                  <span className="text-sm font-medium text-[#74777d]">
-                    {isLogin ? "New professional?" : "Already have an account?"}
-                  </span>
-                  <button onClick={() => setIsLogin(!isLogin)} className="text-sm font-bold text-[#735c00] hover:underline underline-offset-4">
-                    {isLogin ? "Create an account" : "Log in"}
-                  </button>
                 </div>
               </motion.div>
             </div>

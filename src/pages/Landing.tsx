@@ -28,7 +28,7 @@ export default function Landing() {
         <link rel="canonical" href="https://buildbazaarx.com/professional" />
       </Helmet>
 
-      <div className="relative bg-[#fcf9f6] w-full overflow-hidden text-[#1c1c1a]">
+      <div className="relative bg-surface w-full overflow-hidden text-on-surface">
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap');
           .font-headline { font-family: 'Newsreader', serif; }

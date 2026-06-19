@@ -25,7 +25,8 @@ export default {
   			},
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
+  				foreground: 'hsl(var(--secondary-foreground))',
+  				light: 'hsl(var(--secondary-light))'
   			},
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
@@ -189,6 +190,19 @@ export default {
   				'Liberation Mono',
   				'Courier New',
   				'monospace'
+  			],
+  			headline: [
+  				'Sora',
+  				'Inter',
+  				'ui-sans-serif',
+  				'system-ui',
+  				'sans-serif'
+  			],
+  			body: [
+  				'Inter',
+  				'ui-sans-serif',
+  				'system-ui',
+  				'sans-serif'
   			]
   		},
   		boxShadow: {

@@ -42,14 +42,14 @@ export default function Help() {
         .font-body { font-family: 'Manrope', sans-serif; }
       `}</style>
 
-      <div className="bg-[#fcf9f6] min-h-screen text-[#1c1c1a] font-body">
+      <div className="bg-surface min-h-screen text-on-surface font-body">
         {/* Header */}
-        <section className="pt-16 pb-8 px-6 md:px-12 text-center border-b border-[#e5e2df]">
+        <section className="pt-16 pb-8 px-6 md:px-12 text-center border-b border-border">
           <Reveal width="100%">
             <h1 className="text-4xl md:text-6xl font-headline tracking-tight leading-tight mb-6">
               How can we <span className="italic">help?</span>
             </h1>
-            <p className="text-lg text-[#74777d] max-w-xl mx-auto">
+            <p className="text-lg text-on-surface-variant max-w-xl mx-auto">
               Find answers to common questions or reach out to our dedicated professional support team.
             </p>
           </Reveal>
@@ -63,11 +63,11 @@ export default function Help() {
               <h2 className="text-3xl font-headline tracking-tight mb-8">Frequently Asked <span className="italic">Questions</span></h2>
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, i) => (
-                  <AccordionItem key={i} value={`item-${i}`} className="border-[#e5e2df]">
-                    <AccordionTrigger className="font-headline font-bold text-xl text-[#1c1c1a] hover:no-underline text-left py-6">
+                  <AccordionItem key={i} value={`item-${i}`} className="border-border">
+                    <AccordionTrigger className="font-headline font-bold text-xl text-on-surface hover:no-underline text-left py-6">
                       {faq.q}
                     </AccordionTrigger>
-                    <AccordionContent className="text-[#74777d] leading-relaxed text-base pb-6">
+                    <AccordionContent className="text-on-surface-variant leading-relaxed text-base pb-6">
                       {faq.a}
                     </AccordionContent>
                   </AccordionItem>
@@ -79,40 +79,40 @@ export default function Help() {
           {/* Contact Support */}
           <div className="lg:col-span-4">
             <Reveal width="100%">
-              <div className="bg-white border border-[#e5e2df] p-5 md:p-8 rounded-2xl shadow-sm md:sticky md:top-32">
+              <div className="bg-surface-container-lowest border border-border p-5 md:p-8 rounded-2xl shadow-sm md:sticky md:top-32">
                 <h3 className="text-2xl font-headline tracking-tight mb-6">Contact <span className="italic">Support</span></h3>
-                <p className="text-[#74777d] text-sm mb-8">
+                <p className="text-on-surface-variant text-sm mb-8">
                   Our professional support team is available Monday through Saturday, 9 AM to 7 PM.
                 </p>
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#f6f3f0] flex items-center justify-center shrink-0">
-                      <Phone className="w-4 h-4 text-[#735c00]" />
+                    <div className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center shrink-0">
+                      <Phone className="w-4 h-4 text-secondary" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#74777d] mb-1">Helpline</p>
-                      <p className="font-bold text-[#1c1c1a]">+91 1800 123 4567</p>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Helpline</p>
+                      <p className="font-bold text-on-surface">+91 1800 123 4567</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#f6f3f0] flex items-center justify-center shrink-0">
-                      <Mail className="w-4 h-4 text-[#735c00]" />
+                    <div className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center shrink-0">
+                      <Mail className="w-4 h-4 text-secondary" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#74777d] mb-1">Email</p>
-                      <p className="font-bold text-[#1c1c1a]">partners@buildbazaarx.com</p>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Email</p>
+                      <p className="font-bold text-on-surface">partners@buildbazaarx.com</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#f6f3f0] flex items-center justify-center shrink-0">
-                      <MessageSquare className="w-4 h-4 text-[#735c00]" />
+                    <div className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center shrink-0">
+                      <MessageSquare className="w-4 h-4 text-secondary" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#74777d] mb-1">WhatsApp</p>
-                      <p className="font-bold text-[#1c1c1a]">+91 98765 43210</p>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">WhatsApp</p>
+                      <p className="font-bold text-on-surface">+91 98765 43210</p>
                     </div>
                   </div>
                 </div>

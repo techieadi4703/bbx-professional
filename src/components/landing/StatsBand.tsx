@@ -35,23 +35,23 @@ export const StatsBand = () => {
   ];
 
   return (
-    <section className="bg-white border-y border-[#e5e2df] py-8 md:py-16">
+    <section className="bg-surface-container-lowest border-y border-border py-8 md:py-16">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <Reveal width="100%">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-12">
             {stats.map((stat, i) => (
-              <div key={i} className="text-center md:text-left space-y-2 border-l-2 border-[#fcf9f6] pl-3 md:pl-6">
-                <div className="text-4xl md:text-5xl font-headline font-bold text-[#1c1c1a]">
+              <div key={i} className="text-center md:text-left space-y-2 border-l-2 border-surface pl-3 md:pl-6">
+                <div className="text-4xl md:text-5xl font-headline font-bold text-on-surface">
                   <AnimatedNumber value={stat.num} suffix={stat.suffix} />
                 </div>
-                <p className="text-xs uppercase tracking-widest font-bold text-[#74777d]">
+                <p className="text-xs uppercase tracking-widest font-bold text-on-surface-variant">
                   {stat.label}
                 </p>
               </div>
             ))}
           </div>
           <div className="mt-8 text-center md:text-left">
-            <p className="text-[10px] uppercase text-[#74777d]">* as on 31 Dec 2024</p>
+            <p className="text-[10px] uppercase text-on-surface-variant">* as on 31 Dec 2024</p>
           </div>
         </Reveal>
       </div>

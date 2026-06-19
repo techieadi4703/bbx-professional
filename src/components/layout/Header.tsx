@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { logoIcon } from "@/lib/cdnImages";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 export const CitySelector = () => {
   const [city, setCity] = useState("Varanasi");
@@ -33,9 +34,9 @@ export const CitySelector = () => {
           <ChevronDown className="w-4 h-4" />
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md bg-white border-[#e5e2df] p-6 rounded-xl">
+      <DialogContent className="sm:max-w-md bg-surface-container-lowest border-border p-6 rounded-xl">
         <DialogHeader>
-          <DialogTitle className="font-headline text-2xl tracking-tight text-[#1c1c1a]">Select your city</DialogTitle>
+          <DialogTitle className="font-headline text-2xl tracking-tight text-on-surface">Select your city</DialogTitle>
         </DialogHeader>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
           {CITIES.map((c) => (
@@ -43,8 +44,8 @@ export const CitySelector = () => {
               key={c}
               onClick={() => handleSelect(c)}
               className={`p-3 text-sm font-body font-medium rounded-lg border transition-all ${city === c
-                ? "border-[#735c00] bg-[#735c00]/5 text-[#735c00]"
-                : "border-[#e5e2df] hover:border-[#735c00] text-[#1c1c1a]"
+                ? "border-secondary bg-secondary/5 text-secondary"
+                : "border-border hover:border-secondary text-on-surface"
                 }`}
             >
               {c}
@@ -79,8 +80,8 @@ export const Header = () => {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 w-full ${scrolled
-        ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e5e2df] text-[#1c1c1a] py-2.5 md:py-3"
-        : "bg-transparent text-[#1c1c1a] py-3 md:py-5"
+        ? "bg-surface-container-lowest/95 backdrop-blur-md shadow-sm border-b border-border text-on-surface py-2.5 md:py-3"
+        : "bg-transparent text-on-surface py-3 md:py-5"
         }`}
     >
       <div className="max-w-[1440px] mx-auto px-4 md:px-12 flex items-center justify-between h-10 md:h-12">
@@ -90,7 +91,7 @@ export const Header = () => {
           <img src={logoIcon} className="h-[28px] sm:h-[37px] w-auto object-contain shrink-0" alt="BuildBazaarX Logo Icon" />
           <div className="flex flex-col sm:flex-row sm:items-center sm:gap-x-1 leading-none">
             <span className="text-[15px] sm:text-2xl font-headline font-bold tracking-tight leading-none">BuildBazaarX</span>
-            <span className="text-[10px] sm:text-xl font-headline italic text-[#735c00] leading-none">Professional</span>
+            <span className="text-[10px] sm:text-xl font-headline italic text-secondary leading-none">Professional</span>
           </div>
         </Link>
 
@@ -102,24 +103,25 @@ export const Header = () => {
           </nav>
 
           <div className="flex items-center gap-6">
+            <ThemeToggle />
             {!isAuthenticated ? (
               <Link
                 to="/auth?mode=login"
-                className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
+                className="bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-sm font-body font-semibold hover:bg-secondary transition-colors flex items-center gap-2"
               >
                 Log in
               </Link>
             ) : (
               <Link
                 to="/dashboard"
-                className="bg-[#735c00] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#1c1c1a] transition-colors flex items-center gap-2"
+                className="bg-secondary text-secondary-foreground px-6 py-2.5 rounded-lg text-sm font-body font-semibold hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-2"
               >
                 Dashboard
               </Link>
             )}
             {/* <Link
               to="/auth?mode=signup"
-              className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
+              className="bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-sm font-body font-bold hover:bg-secondary transition-colors flex items-center gap-2"
             >
               Apply now <span aria-hidden="true">&rarr;</span>
             </Link> */}
@@ -129,10 +131,11 @@ export const Header = () => {
         {/* Mobile Action Button */}
         {!isDashboard && (
           <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             {!isAuthenticated ? (
               <Link
                 to="/auth?mode=login"
-                className="bg-[#1c1c1a] text-white px-4 py-2 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors"
+                className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-body font-semibold hover:bg-secondary transition-colors"
               >
                 Log in
               </Link>
@@ -140,13 +143,13 @@ export const Header = () => {
               <>
                 <Link
                   to="/dashboard"
-                  className="bg-[#735c00]/10 text-[#735c00] px-4 py-2 rounded-full text-sm font-body font-bold hover:bg-[#735c00]/20 transition-colors"
+                  className="bg-secondary/10 text-secondary px-4 py-2 rounded-lg text-sm font-body font-semibold hover:bg-secondary/20 transition-colors"
                 >
                   Dashboard
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="bg-[#f6f3f0] text-[#1c1c1a] border border-[#e5e2df] px-3 py-2 rounded-full text-sm font-body font-bold hover:bg-[#e5e2df] transition-colors flex items-center gap-1"
+                  className="bg-surface-container-low text-on-surface border border-border px-3 py-2 rounded-lg text-sm font-body font-semibold hover:bg-surface-container transition-colors flex items-center gap-1"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>

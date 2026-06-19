@@ -36,23 +36,23 @@ export const StickyApplyCTA = () => {
           <div className="hidden md:block">
             <Link 
               to="/auth?mode=signup" 
-              className="flex items-center gap-3 bg-[#1c1c1a] text-white px-8 py-4 rounded-full shadow-2xl font-body font-bold text-lg hover:bg-[#735c00] hover:scale-105 transition-all"
+              className="flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-lg shadow-sm font-body font-bold text-lg hover:bg-secondary hover:scale-105 transition-all"
             >
               Apply now <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
 
           {/* Mobile Version */}
-          <div className="md:hidden bg-white border-t border-[#e5e2df] shadow-[0_-4px_20px_rgba(0,0,0,0.05)] p-4 flex items-center gap-3">
+          <div className="md:hidden bg-surface-container-lowest border-t border-border shadow-[0_-4px_20px_rgba(0,0,0,0.05)] p-4 flex items-center gap-3">
             <a 
               href="tel:+919876543210" 
-              className="flex-1 flex items-center justify-center gap-2 bg-[#fcf9f6] text-[#1c1c1a] border border-[#e5e2df] py-3.5 rounded-xl font-bold font-body"
+              className="flex-1 flex items-center justify-center gap-2 bg-surface text-on-surface border border-border py-3.5 rounded-xl font-bold font-body"
             >
               <Phone className="w-4 h-4" /> Call us
             </a>
             <Link 
               to="/auth?mode=signup" 
-              className="flex-1 flex items-center justify-center gap-2 bg-[#1c1c1a] text-white py-3.5 rounded-xl font-bold font-body"
+              className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3.5 rounded-xl font-bold font-body"
             >
               Apply now <ArrowRight className="w-4 h-4" />
             </Link>

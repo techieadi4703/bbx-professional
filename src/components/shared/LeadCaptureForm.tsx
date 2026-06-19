@@ -121,7 +121,7 @@ export const LeadCaptureForm = ({
           <Reveal width="100%" direction="up" delay={0.2}>
             <motion.form
               onSubmit={handleSubmit}
-              className={`${isHero ? "bg-[#C5A572] p-8 md:p-12 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.2)]" : "bg-[#C5A572] p-8 md:p-12 rounded-3xl shadow-xl"} border border-white/20`}
+              className={`${isHero ? "bg-secondary-light p-8 md:p-12 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.2)]" : "bg-secondary-light p-8 md:p-12 rounded-3xl shadow-sm"} border border-white/20`}
               whileHover={{ y: -5 }}
               transition={{ duration: 0.5 }}
             >
@@ -135,7 +135,7 @@ export const LeadCaptureForm = ({
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
-                      className="rounded-xl h-12 bg-white/90 border-black/10 focus:bg-white focus:border-primary transition-all duration-300 text-black placeholder:text-black/60 shadow-sm"
+                      className="rounded-xl h-12 bg-surface-container-lowest/90 border-black/10 focus:bg-surface-container-lowest focus:border-primary transition-all duration-300 text-black placeholder:text-black/60 shadow-sm"
                     />
                   </div>
                 </RevealItem>
@@ -149,7 +149,7 @@ export const LeadCaptureForm = ({
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       required
-                      className="rounded-xl h-12 bg-white/90 border-black/10 focus:bg-white focus:border-primary transition-all duration-300 text-black placeholder:text-black/60 shadow-sm"
+                      className="rounded-xl h-12 bg-surface-container-lowest/90 border-black/10 focus:bg-surface-container-lowest focus:border-primary transition-all duration-300 text-black placeholder:text-black/60 shadow-sm"
                     />
                   </div>
                 </RevealItem>
@@ -162,7 +162,7 @@ export const LeadCaptureForm = ({
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                       required
-                      className="rounded-xl h-12 bg-white/90 border-black/10 focus:bg-white focus:border-primary transition-all duration-300 text-black placeholder:text-black/60 shadow-sm"
+                      className="rounded-xl h-12 bg-surface-container-lowest/90 border-black/10 focus:bg-surface-container-lowest focus:border-primary transition-all duration-300 text-black placeholder:text-black/60 shadow-sm"
                     />
                   </div>
                 </RevealItem>
@@ -173,7 +173,7 @@ export const LeadCaptureForm = ({
                       value={formData.budget}
                       onValueChange={(value) => setFormData({ ...formData, budget: value })}
                     >
-                      <SelectTrigger id="budget" className="rounded-xl h-12 bg-white/90 border-black/10 focus:bg-white focus:border-primary transition-all duration-300 text-black shadow-sm">
+                      <SelectTrigger id="budget" className="rounded-xl h-12 bg-surface-container-lowest/90 border-black/10 focus:bg-surface-container-lowest focus:border-primary transition-all duration-300 text-black shadow-sm">
                         <SelectValue placeholder="Select budget" />
                       </SelectTrigger>
                       <SelectContent>
@@ -192,14 +192,14 @@ export const LeadCaptureForm = ({
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full sm:w-auto rounded-full px-12 h-14 text-lg font-bold shadow-2xl bg-black text-white hover:bg-black/80 group relative overflow-hidden transition-all duration-500"
+                  className="w-full sm:w-auto rounded-lg px-12 h-14 text-lg font-bold shadow-sm bg-primary text-primary-foreground hover:bg-secondary group relative overflow-hidden transition-all duration-500"
                   disabled={isSubmitting}
                 >
                   <span className="relative z-10 flex items-center gap-2">
                     {isSubmitting ? "Submitting..." : "Initiate Free Consultation"}
                   </span>
                   <motion.div 
-                    className="absolute inset-0 bg-white/10"
+                    className="absolute inset-0 bg-surface-container-lowest/10"
                     initial={{ x: "-100%" }}
                     whileHover={{ x: "100%" }}
                     transition={{ duration: 0.5 }}
