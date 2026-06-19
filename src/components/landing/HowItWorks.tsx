@@ -11,7 +11,7 @@ export const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-[#fcf9f6]">
+    <section className="py-10 md:py-24 bg-[#fcf9f6]">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <Reveal width="100%">
           <div className="mb-16 text-center">
@@ -20,14 +20,14 @@ export const HowItWorks = () => {
             </h2>
           </div>
           
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 relative">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 relative">
             {/* Horizontal connecting line on desktop */}
             <div className="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-[1px] border-t border-dashed border-[#735c00]/30 -translate-y-1/2 z-0" />
 
             {steps.map((step, i) => (
               <React.Fragment key={i}>
                 <RevealItem className="w-full md:w-1/4 z-10 relative">
-                  <div className="bg-white border border-[#e5e2df] p-8 rounded-2xl shadow-sm flex flex-col items-center text-center relative group hover:border-[#735c00] transition-colors">
+                  <div className="bg-white border border-[#e5e2df] p-5 md:p-8 rounded-2xl shadow-sm flex flex-col items-center text-center relative group hover:border-[#735c00] transition-colors">
                     
                     <div className="absolute -top-4 -left-4 w-9 h-9 rounded-full bg-[#1c1c1a] text-white flex items-center justify-center font-headline italic text-sm shadow-md">
                       {step.num}
@@ -48,8 +48,8 @@ export const HowItWorks = () => {
                 )}
                 
                 {i < steps.length - 1 && (
-                  <div className="md:hidden flex justify-center w-full">
-                    <div className="h-8 w-[1px] border-l border-dashed border-[#e5e2df]" />
+                  <div className="md:hidden flex justify-center w-full my-1">
+                    <div className="h-6 w-[1px] border-l border-dashed border-[#e5e2df]" />
                   </div>
                 )}
               </React.Fragment>

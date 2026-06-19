@@ -4,7 +4,7 @@ import { Reveal } from '@/components/shared/Reveal';
 
 export const FinalCTA = () => {
   return (
-    <section className="bg-[#1c1c1a] text-white py-20 md:py-32 text-center relative overflow-hidden border-y border-[#1c1c1a]">
+    <section className="bg-[#1c1c1a] text-white py-12 md:py-32 text-center relative overflow-hidden border-y border-[#1c1c1a]">
       {/* Background pattern */}
       <div 
         className="absolute inset-0 opacity-10 pointer-events-none"
@@ -18,7 +18,7 @@ export const FinalCTA = () => {
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
         <Reveal width="100%">
           <div className="max-w-2xl mx-auto space-y-8">
-            <h2 className="text-5xl md:text-6xl font-headline tracking-tight italic">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-headline tracking-tight italic">
               Ready to build your future?
             </h2>
             

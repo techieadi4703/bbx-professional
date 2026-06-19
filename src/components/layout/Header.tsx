@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Menu, MapPin, ChevronDown, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { MapPin, ChevronDown, LogOut } from "lucide-react";
 import { CITIES } from "@/lib/professions";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
+import { logoIcon } from "@/lib/cdnImages";
 
 export const CitySelector = () => {
   const [city, setCity] = useState("Varanasi");
@@ -56,6 +58,15 @@ export const CitySelector = () => {
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isDashboard = location.pathname === "/dashboard";
+  const { isAuthenticated } = useAuth();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,34 +79,44 @@ export const Header = () => {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 w-full ${scrolled
-        ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e5e2df] text-[#1c1c1a] py-3"
-        : "bg-transparent text-[#1c1c1a] py-5"
+        ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e5e2df] text-[#1c1c1a] py-2.5 md:py-3"
+        : "bg-transparent text-[#1c1c1a] py-3 md:py-5"
         }`}
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between h-12">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-12 flex items-center justify-between h-10 md:h-12">
 
         {/* Left: Logo */}
-        <Link to="/" className="flex items-center gap-1 group">
-          <span className="text-2xl font-headline font-bold tracking-tight">BuildBazaarX</span>
-          <span className="text-xl font-headline italic text-[#735c00]">Professional</span>
+        <Link to="/" className="flex items-center gap-1.5 sm:gap-2 group">
+          <img src={logoIcon} className="h-[28px] sm:h-[37px] w-auto object-contain shrink-0" alt="BuildBazaarX Logo Icon" />
+          <div className="flex flex-col sm:flex-row sm:items-center sm:gap-x-1 leading-none">
+            <span className="text-[15px] sm:text-2xl font-headline font-bold tracking-tight leading-none">BuildBazaarX</span>
+            <span className="text-[10px] sm:text-xl font-headline italic text-[#735c00] leading-none">Professional</span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           <nav className="flex items-center gap-8 font-body text-sm font-medium">
             <a href="https://buildbazaarx.com" target="_blank" rel="noreferrer" className="hover:opacity-70 transition-opacity">Book a service</a>
-            <Link to="/about" className="hover:opacity-70 transition-opacity">About</Link>
-            <Link to="/help" className="hover:opacity-70 transition-opacity">Help</Link>
             <CitySelector />
           </nav>
 
           <div className="flex items-center gap-6">
-            <Link
-              to="/auth?mode=login"
-              className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
-            >
-              Log in
-            </Link>
+            {!isAuthenticated ? (
+              <Link
+                to="/auth?mode=login"
+                className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
+              >
+                Log in
+              </Link>
+            ) : (
+              <Link
+                to="/dashboard"
+                className="bg-[#735c00] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#1c1c1a] transition-colors flex items-center gap-2"
+              >
+                Dashboard
+              </Link>
+            )}
             {/* <Link
               to="/auth?mode=signup"
               className="bg-[#1c1c1a] text-white px-6 py-2.5 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors flex items-center gap-2"
@@ -105,45 +126,34 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Hamburger */}
-        <div className="md:hidden flex items-center">
-          <Sheet>
-            <SheetTrigger asChild>
-              <button className="p-2 -mr-2">
-                <Menu className="w-6 h-6" />
-                <span className="sr-only">Open Menu</span>
-              </button>
-            </SheetTrigger>
-            <SheetContent side="right" className="bg-white border-l-[#e5e2df] text-[#1c1c1a] p-6 w-full sm:w-[400px]">
-              <div className="flex flex-col h-full">
-                <div className="mt-8 flex flex-col gap-6 text-lg font-headline">
-                  <a href="https://buildbazaarx.com" target="_blank" rel="noreferrer" className="hover:text-[#735c00]">Book a service</a>
-                  <Link to="/about" className="hover:text-[#735c00]">About</Link>
-                  <Link to="/help" className="hover:text-[#735c00]">Help</Link>
-                </div>
-
-                <div className="mt-8 border-t border-[#e5e2df] pt-8">
-                  <CitySelector />
-                </div>
-
-                <div className="mt-auto mb-8 flex flex-col gap-3">
-                  <Link
-                    to="/auth?mode=login"
-                    className="w-full bg-[#f6f3f0] text-[#1c1c1a] border border-[#e5e2df] px-6 py-4 rounded-full text-center text-sm font-body font-bold hover:bg-[#e5e2df] transition-colors block"
-                  >
-                    Log in
-                  </Link>
-                  <Link
-                    to="/auth?mode=signup"
-                    className="w-full bg-[#1c1c1a] text-white px-6 py-4 rounded-full text-center text-sm font-body font-bold hover:bg-[#735c00] transition-colors block"
-                  >
-                    Apply now &rarr;
-                  </Link>
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
+        {/* Mobile Action Button */}
+        {!isDashboard && (
+          <div className="md:hidden flex items-center gap-2">
+            {!isAuthenticated ? (
+              <Link
+                to="/auth?mode=login"
+                className="bg-[#1c1c1a] text-white px-4 py-2 rounded-full text-sm font-body font-bold hover:bg-[#735c00] transition-colors"
+              >
+                Log in
+              </Link>
+            ) : (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="bg-[#735c00]/10 text-[#735c00] px-4 py-2 rounded-full text-sm font-body font-bold hover:bg-[#735c00]/20 transition-colors"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="bg-[#f6f3f0] text-[#1c1c1a] border border-[#e5e2df] px-3 py-2 rounded-full text-sm font-body font-bold hover:bg-[#e5e2df] transition-colors flex items-center gap-1"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </>
+            )}
+          </div>
+        )}
 
       </div>
     </header>

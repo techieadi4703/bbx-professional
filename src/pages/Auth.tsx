@@ -127,12 +127,12 @@ export default function ProfessionalAuth() {
       <div className="bg-[#fcf9f6] text-[#1c1c1a] min-h-screen font-body w-full pb-20 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
         
-        <main className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 md:py-24 relative z-10">
-          <div className="flex flex-col md:flex-row gap-16 md:gap-24 items-start">
+        <main className="max-w-[1440px] mx-auto px-4 md:px-12 pt-2 pb-8 md:py-24 relative z-10">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-24 items-start">
             
-            <div className="w-full md:w-1/3 shrink-0 sticky top-32">
+            <div className="w-full md:w-1/3 shrink-0 md:sticky md:top-32">
                <span className="font-body uppercase tracking-[0.2em] text-[10px] text-[#735c00] mb-4 block font-bold">FOR PROFESSIONALS</span>
-               <h1 className="text-6xl md:text-7xl font-headline tracking-tight leading-none mb-6">
+               <h1 className="text-4xl sm:text-5xl md:text-7xl font-headline tracking-tight leading-tight mb-6">
                 {isLogin ? "Welcome" : "Join us"} <br/><span className="italic">{isLogin ? "back." : "today."}</span>
               </h1>
                <div className="w-12 h-[1px] bg-[#c4c6cc] mb-6"></div>
@@ -147,7 +147,7 @@ export default function ProfessionalAuth() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white border border-[#e5e2df] p-8 md:p-12 rounded-2xl shadow-2xl hover:border-[#735c00] transition-colors relative z-10"
+                className="bg-white border border-[#e5e2df] p-5 md:p-12 rounded-2xl shadow-2xl hover:border-[#735c00] transition-colors relative z-10"
               >
                 <form onSubmit={handleAuth} className="space-y-5">
                   {!isLogin && (

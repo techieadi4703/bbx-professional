@@ -13,14 +13,14 @@ export const EarningsCalculator = () => {
   const earnings = Math.round(hours[0] * days[0] * rate * 0.8);
 
   return (
-    <section className="py-16 md:py-24 bg-[#1c1c1a] text-white">
+    <section className="py-10 md:py-24 bg-[#1c1c1a] text-white">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <Reveal width="100%">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             
             {/* Left Column */}
             <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline tracking-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-headline tracking-tight">
                 Estimate your <span className="italic text-[#735c00]">earnings</span>
               </h2>
               <p className="text-white/80 font-medium leading-relaxed max-w-lg mx-auto lg:mx-0">
@@ -30,7 +30,7 @@ export const EarningsCalculator = () => {
 
             {/* Right Column */}
             <RevealItem className="w-full lg:w-1/2">
-              <div className="bg-white text-[#1c1c1a] rounded-3xl p-8 md:p-12 shadow-2xl border border-[#e5e2df]">
+              <div className="bg-white text-[#1c1c1a] rounded-3xl p-5 md:p-12 shadow-2xl border border-[#e5e2df]">
                 
                 <div className="mb-10 text-center">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-[#74777d] block mb-2">Estimated Net Earnings</span>

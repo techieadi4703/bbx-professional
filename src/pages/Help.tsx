@@ -44,9 +44,9 @@ export default function Help() {
 
       <div className="bg-[#fcf9f6] min-h-screen text-[#1c1c1a] font-body">
         {/* Header */}
-        <section className="pt-32 pb-16 px-6 md:px-12 text-center border-b border-[#e5e2df]">
+        <section className="pt-16 pb-8 px-6 md:px-12 text-center border-b border-[#e5e2df]">
           <Reveal width="100%">
-            <h1 className="text-5xl md:text-6xl font-headline tracking-tight leading-none mb-6">
+            <h1 className="text-4xl md:text-6xl font-headline tracking-tight leading-tight mb-6">
               How can we <span className="italic">help?</span>
             </h1>
             <p className="text-lg text-[#74777d] max-w-xl mx-auto">
@@ -55,7 +55,7 @@ export default function Help() {
           </Reveal>
         </section>
 
-        <section className="py-24 px-6 md:px-12 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <section className="py-10 md:py-24 px-6 md:px-12 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           
           {/* FAQs */}
           <div className="lg:col-span-8">
@@ -79,7 +79,7 @@ export default function Help() {
           {/* Contact Support */}
           <div className="lg:col-span-4">
             <Reveal width="100%">
-              <div className="bg-white border border-[#e5e2df] p-8 rounded-2xl shadow-sm sticky top-32">
+              <div className="bg-white border border-[#e5e2df] p-5 md:p-8 rounded-2xl shadow-sm md:sticky md:top-32">
                 <h3 className="text-2xl font-headline tracking-tight mb-6">Contact <span className="italic">Support</span></h3>
                 <p className="text-[#74777d] text-sm mb-8">
                   Our professional support team is available Monday through Saturday, 9 AM to 7 PM.

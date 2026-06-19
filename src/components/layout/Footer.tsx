@@ -6,12 +6,12 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#1c1c1a] text-white/80 font-body py-16">
+    <footer className="bg-[#1c1c1a] text-white/80 font-body py-6 md:py-16">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 mb-8 md:mb-16">
           
           {/* Column 1 */}
-          <div className="space-y-6">
+          <div className="space-y-3 md:space-y-6 col-span-2 sm:col-span-1">
             <Link to="/" className="flex flex-col gap-1 inline-block">
               <span className="text-2xl font-headline font-bold tracking-tight text-white">BuildBazaarX</span>
               <span className="text-xl font-headline italic text-[#735c00]">Professional</span>
@@ -28,9 +28,9 @@ export const Footer = () => {
           </div>
 
           {/* Column 2 */}
-          <div className="space-y-6">
+          <div className="space-y-3 md:space-y-6">
             <h3 className="font-headline text-lg text-white">Company</h3>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-2 md:space-y-4 text-sm">
               <li><a href="#" className="hover:text-white transition-colors">About</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Anti-Discrimination Policy</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Information Security</a></li>
@@ -39,9 +39,9 @@ export const Footer = () => {
           </div>
 
           {/* Column 3 */}
-          <div className="space-y-6">
+          <div className="space-y-3 md:space-y-6">
             <h3 className="font-headline text-lg text-white">For Professionals</h3>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-2 md:space-y-4 text-sm">
               <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Welfare Policy</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Terms & Conditions</a></li>
@@ -51,9 +51,9 @@ export const Footer = () => {
           </div>
 
           {/* Column 4 */}
-          <div className="space-y-6">
+          <div className="space-y-3 md:space-y-6">
             <h3 className="font-headline text-lg text-white">For Customers</h3>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-2 md:space-y-4 text-sm">
               <li><a href="https://buildbazaarx.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Book a service</a></li>
             </ul>
           </div>

@@ -43,11 +43,11 @@ export const GrowthPathway = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-10 md:py-24 bg-white">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <Reveal width="100%">
           <div className="mb-16 text-center">
-            <h2 className="text-4xl md:text-5xl font-headline tracking-tight text-[#1c1c1a]">
+            <h2 className="text-3xl md:text-5xl font-headline tracking-tight text-[#1c1c1a]">
               Grow from <span className="italic text-[#735c00]">Classic to Elite</span>
             </h2>
             <p className="mt-4 text-[#74777d] max-w-2xl mx-auto font-medium">
@@ -58,20 +58,20 @@ export const GrowthPathway = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-stretch max-w-5xl mx-auto">
             {tiers.map((tier, i) => (
               <RevealItem key={i} className="h-full">
-                <div className={`p-8 md:p-10 rounded-2xl border-2 h-full flex flex-col transition-all ${tier.style}`}>
-                  <div className="mb-8">
-                    <tier.icon className={`w-10 h-10 mb-6 ${tier.name === 'Elite' ? 'text-white/80' : 'text-[#735c00]'}`} />
-                    <h3 className="font-headline text-3xl italic font-bold mb-2">{tier.name}</h3>
-                    <p className={`text-xs font-bold uppercase tracking-widest ${tier.name === 'Elite' ? 'text-white/70' : 'text-[#74777d]'}`}>
+                <div className={`p-4 md:p-10 rounded-2xl border-2 h-full flex flex-col transition-all ${tier.style}`}>
+                  <div className="mb-4 md:mb-8">
+                    <tier.icon className={`w-8 h-8 mb-3 md:w-10 md:h-10 md:mb-6 ${tier.name === 'Elite' ? 'text-white/80' : 'text-[#735c00]'}`} />
+                    <h3 className="font-headline text-xl md:text-3xl italic font-bold mb-1 md:mb-2">{tier.name}</h3>
+                    <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest ${tier.name === 'Elite' ? 'text-white/70' : 'text-[#74777d]'}`}>
                       {tier.requirements}
                     </p>
                   </div>
                   
-                  <ul className={`space-y-4 flex-grow ${tier.name === 'Elite' ? 'text-white/90' : 'text-[#44474c]'}`}>
+                  <ul className={`space-y-2 md:space-y-4 flex-grow ${tier.name === 'Elite' ? 'text-white/90' : 'text-[#44474c]'}`}>
                     {tier.perks.map((perk, j) => (
-                      <li key={j} className="flex items-start gap-3">
+                      <li key={j} className="flex items-start gap-2.5 md:gap-3">
                         <span className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${tier.name === 'Elite' ? 'bg-white' : 'bg-[#735c00]'}`} />
-                        <span className="font-medium text-sm leading-relaxed">{perk}</span>
+                        <span className="font-medium text-xs sm:text-sm leading-relaxed">{perk}</span>
                       </li>
                     ))}
                   </ul>
