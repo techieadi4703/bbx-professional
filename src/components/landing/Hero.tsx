@@ -39,45 +39,50 @@ const LeadCaptureCard = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl p-5 md:p-8 max-w-md w-full relative z-10 border border-[#e5e2df]">
-      <h3 className="font-headline text-2xl tracking-tight mb-6">Start your application</h3>
+    <div className="bg-[#C5A572] dark:bg-[#1C2333] p-6 md:p-10 rounded-[3rem] shadow-xl border border-white/20 relative overflow-hidden max-w-md w-full">
+      {/* Visual Blueprint accents */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-black/5 dark:bg-white/5 rounded-bl-[4rem] flex items-center justify-center border-l border-b border-black/10 dark:border-white/10 pointer-events-none">
+        <span className="font-mono text-[10px] rotate-90 tracking-[0.5em] opacity-20 text-black dark:text-white uppercase">Form_Asset</span>
+      </div>
+
+      <h3 className="font-headline text-3xl font-bold tracking-tight mb-8 text-black dark:text-white relative z-10">Start your application</h3>
       
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="space-y-2">
-          <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Phone Number</label>
+      <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+        <div className="space-y-3">
+          <label className="text-[10px] uppercase font-mono tracking-widest text-black/60 dark:text-white/60 ml-1">Phone Number</label>
           <div className="relative flex items-center">
-            <span className="absolute left-4 text-[#74777d] font-bold text-sm">+91</span>
+            <span className="absolute left-5 text-black/40 dark:text-white/40 font-bold text-sm">+91</span>
             <input 
               type="tel"
               required
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors"
+              className="h-11 sm:h-14 w-full rounded-2xl bg-[#E5DACE] dark:bg-[#20293A] border-transparent focus:outline-none focus:ring-2 focus:ring-black/5 dark:focus:ring-white/5 focus:bg-white dark:focus:bg-[#2a364a] transition-all text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 shadow-sm pl-14 pr-5"
               placeholder="XXXXXXXXXX"
             />
           </div>
         </div>
 
-        <div className="space-y-2">
-          <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">City</label>
+        <div className="space-y-3">
+          <label className="text-[10px] uppercase font-mono tracking-widest text-black/60 dark:text-white/60 ml-1">City</label>
           <Select value={city} onValueChange={setCity}>
-            <SelectTrigger className="w-full h-[46px] bg-[#f6f3f0] border-transparent focus:border-[#735c00] rounded-lg font-bold">
+            <SelectTrigger className="h-11 sm:h-14 w-full rounded-2xl bg-[#E5DACE] dark:bg-[#20293A] border-transparent focus:bg-white dark:focus:bg-[#2a364a] transition-all text-black dark:text-white shadow-sm px-5">
               <SelectValue placeholder="Select your city" />
             </SelectTrigger>
-            <SelectContent>
-              {CITIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+            <SelectContent className="rounded-xl bg-white dark:bg-[#20293A] text-black dark:text-white border-transparent shadow-xl">
+              {CITIES.map(c => <SelectItem key={c} value={c} className="rounded-lg hover:bg-black/5 dark:hover:bg-white/5 focus:bg-black/5 dark:focus:bg-white/5 cursor-pointer">{c}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>
 
-        <div className="space-y-2">
-          <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Trade / Profession</label>
+        <div className="space-y-3">
+          <label className="text-[10px] uppercase font-mono tracking-widest text-black/60 dark:text-white/60 ml-1">Trade / Profession</label>
           <Select value={trade} onValueChange={setTrade}>
-            <SelectTrigger className="w-full h-[46px] bg-[#f6f3f0] border-transparent focus:border-[#735c00] rounded-lg font-bold">
+            <SelectTrigger className="h-11 sm:h-14 w-full rounded-2xl bg-[#E5DACE] dark:bg-[#20293A] border-transparent focus:bg-white dark:focus:bg-[#2a364a] transition-all text-black dark:text-white shadow-sm px-5">
               <SelectValue placeholder="Select your trade" />
             </SelectTrigger>
-            <SelectContent>
-              {PROFESSIONS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
+            <SelectContent className="rounded-xl bg-white dark:bg-[#20293A] text-black dark:text-white border-transparent shadow-xl">
+              {PROFESSIONS.map(p => <SelectItem key={p} value={p} className="rounded-lg hover:bg-black/5 dark:hover:bg-white/5 focus:bg-black/5 dark:focus:bg-white/5 cursor-pointer">{p}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>
@@ -85,11 +90,12 @@ const LeadCaptureCard = () => {
         <button 
           type="submit"
           disabled={loading}
-          className="w-full py-4 mt-2 bg-[#1c1c1a] text-white rounded-full font-bold hover:bg-[#735c00] transition-colors flex items-center justify-center gap-2"
+          className="w-full h-14 sm:h-16 rounded-full text-lg font-bold shadow-[0_20px_40px_rgba(0,0,0,0.3)] bg-black dark:bg-[#4A7DE3] text-white hover:bg-black/80 dark:hover:bg-[#4A7DE3]/80 group relative overflow-hidden transition-all duration-500 mt-6 flex items-center justify-center gap-2"
         >
-          {loading ? "Processing..." : "Apply now \u2192"}
+          <span className="relative z-10">{loading ? "Processing..." : "Apply now \u2192"}</span>
+          <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </button>
-        <p className="text-center text-xs text-[#74777d] mt-4">We'll never spam you.</p>
+        <p className="text-center text-[10px] uppercase tracking-widest text-black/40 dark:text-white/40 mt-4 font-mono">We'll never spam you.</p>
       </form>
     </div>
   );
@@ -99,19 +105,9 @@ export const Hero = () => {
   return (
     <section className="relative min-h-[88vh] flex items-center pt-8 pb-8 md:pt-20 md:pb-16 overflow-hidden">
       {/* Background dotted grid */}
-      <div 
-        className="absolute inset-0 pointer-events-none z-0" 
-        style={{ 
-          backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', 
-          backgroundSize: '40px 40px', 
-          opacity: 0.4 
-        }} 
-      />
+      <div className="absolute inset-0 pointer-events-none z-0 bg-blueprint opacity-40" />
       
-      {/* Background Image (mobile faded, desktop aligned right) */}
-      <div className="absolute inset-0 z-0 opacity-10 lg:opacity-30 lg:translate-x-1/3 flex items-center justify-end pointer-events-none">
-        <img src="/branding_hero.png" alt="" className="h-[120%] object-cover object-left max-w-none" />
-      </div>
+
 
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 w-full relative z-10">
         <Reveal width="100%">
@@ -119,29 +115,30 @@ export const Hero = () => {
             
             {/* Left Column */}
             <div className="w-full lg:w-[55%] space-y-8">
-              <span className="inline-block py-1.5 px-3 bg-[#735c00]/10 text-[#735c00] text-[10px] font-bold uppercase tracking-widest rounded-full border border-[#735c00]/20">
+              <div className="inline-flex items-center gap-2 py-1.5 px-3 bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-widest rounded-full border border-secondary/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
                 FOR PROFESSIONALS · PAN INDIA
-              </span>
+              </div>
               
-              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-headline tracking-tight leading-[1.1] text-[#1c1c1a]">
-                Build your career on India's most trusted construction-trades network.
+              <h1 className="font-headline font-semibold text-4xl md:text-5xl lg:text-[3.5rem] tracking-tight leading-[1.1] text-on-surface">
+                Build your career on India's most trusted <span className="text-secondary">construction-trades</span> network.
               </h1>
               
-              <p className="text-lg text-[#74777d] font-medium leading-relaxed max-w-xl">
+              <p className="text-lg text-on-surface-variant font-medium leading-relaxed max-w-xl">
                 Join thousands of verified electricians, plumbers, carpenters and other trade professionals who are growing their business with steady jobs, transparent pricing, and free training.
               </p>
               
-              <div className="pt-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-bold text-[#1c1c1a]">
+              <div className="pt-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-bold text-on-surface">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#735c00]"></span>
+                  <span className="w-1.5 h-1.5 rounded-lg bg-secondary"></span>
                   10,000+ verified pros
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#735c00]"></span>
+                  <span className="w-1.5 h-1.5 rounded-lg bg-secondary"></span>
                   4.7★ avg rating
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#735c00]"></span>
+                  <span className="w-1.5 h-1.5 rounded-lg bg-secondary"></span>
                   ₹28,000+ avg monthly earnings
                 </div>
               </div>

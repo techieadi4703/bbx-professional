@@ -29,6 +29,15 @@ export const Testimonials = () => {
     emblaApi.on('reInit', onSelect);
   }, [emblaApi, onSelect]);
 
+  // Auto-play
+  useEffect(() => {
+    if (!emblaApi) return;
+    const interval = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [emblaApi]);
+
   const testimonials = [
     {
       name: "Anil Kumar",
@@ -87,12 +96,12 @@ export const Testimonials = () => {
   ];
 
   return (
-    <section className="py-10 md:py-24 bg-[#fcf9f6] border-y border-[#e5e2df]">
+    <section className="py-10 md:py-24 bg-surface border-y border-border">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <Reveal width="100%">
           <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-headline tracking-tight text-[#1c1c1a]">
-              Stories from our <span className="italic text-[#735c00]">partners</span>
+            <h2 className="text-3xl md:text-5xl font-headline tracking-tight text-on-surface">
+              Stories from our <span className="italic text-secondary">partners</span>
             </h2>
           </div>
 
@@ -101,30 +110,30 @@ export const Testimonials = () => {
               <div className="flex -ml-4">
                 {testimonials.map((t, i) => (
                   <div key={i} className="pl-4 min-w-0 shrink-0 grow-0 basis-full md:basis-1/2 lg:basis-1/3">
-                    <div className="bg-white border border-[#e5e2df] p-5 md:p-8 rounded-2xl h-full flex flex-col justify-between group hover:border-[#735c00] transition-colors">
+                    <div className="bg-surface-container-lowest border border-border p-5 md:p-8 rounded-2xl h-full flex flex-col justify-between group hover:border-secondary transition-colors">
                       <div>
                         <div className="flex items-center gap-4 mb-6">
-                          <img src={t.photoUrl} alt={t.name} className="w-16 h-16 rounded-full object-cover bg-[#f6f3f0]" />
+                          <img src={t.photoUrl} alt={t.name} className="w-16 h-16 rounded-full object-cover bg-surface-container-low" />
                           <div>
                             <div className="flex items-center gap-1.5">
-                              <h3 className="font-headline font-bold text-xl text-[#1c1c1a]">{t.name}</h3>
-                              <CheckCircle className="w-4 h-4 text-[#735c00]" />
+                              <h3 className="font-headline font-bold text-xl text-on-surface">{t.name}</h3>
+                              <CheckCircle className="w-4 h-4 text-secondary" />
                             </div>
-                            <p className="text-xs font-bold uppercase tracking-widest text-[#74777d] mt-1">{t.trade} · {t.city}</p>
+                            <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant mt-1">{t.trade} · {t.city}</p>
                           </div>
                         </div>
-                        <p className="font-headline italic text-lg md:text-2xl text-[#1c1c1a] leading-snug mb-8">"{t.quote}"</p>
+                        <p className="font-headline italic text-lg md:text-2xl text-on-surface leading-snug mb-8">"{t.quote}"</p>
                       </div>
-                      
-                      <div className="bg-[#fcf9f6] rounded-xl p-4 flex items-center justify-between border border-[#e5e2df]">
+
+                      <div className="bg-surface rounded-xl p-4 flex items-center justify-between border border-border">
                         <div className="text-center">
-                          <p className="text-[10px] uppercase font-bold tracking-widest text-[#74777d]">Before</p>
-                          <p className="text-[#1c1c1a] font-bold mt-1">{t.before}</p>
+                          <p className="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant">Before</p>
+                          <p className="text-on-surface font-bold mt-1">{t.before}</p>
                         </div>
-                        <div className="text-[#735c00] font-bold">&rarr;</div>
+                        <div className="text-secondary font-bold">&rarr;</div>
                         <div className="text-center">
-                          <p className="text-[10px] uppercase font-bold tracking-widest text-[#74777d]">After</p>
-                          <p className="text-[#735c00] font-bold mt-1">{t.after}</p>
+                          <p className="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant">After</p>
+                          <p className="text-secondary font-bold mt-1">{t.after}</p>
                         </div>
                       </div>
                     </div>
@@ -139,7 +148,7 @@ export const Testimonials = () => {
                 {scrollSnaps.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors ${index === selectedIndex ? 'bg-[#735c00]' : 'bg-[#e5e2df]'}`}
+                    className={`w-2.5 h-2.5 rounded-lg transition-colors ${index === selectedIndex ? 'bg-secondary' : 'bg-surface-container'}`}
                     onClick={() => scrollTo(index)}
                     aria-label={`Go to slide ${index + 1}`}
                   />
@@ -147,14 +156,14 @@ export const Testimonials = () => {
               </div>
               <div className="flex gap-3">
                 <button
-                  className="w-12 h-12 rounded-full border border-[#e5e2df] flex items-center justify-center text-[#1c1c1a] hover:bg-[#fcf9f6] transition-colors disabled:opacity-50"
+                  className="w-12 h-12 rounded-lg border border-border flex items-center justify-center text-on-surface hover:bg-surface transition-colors disabled:opacity-50"
                   onClick={scrollPrev}
                   disabled={!prevBtnEnabled}
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
-                  className="w-12 h-12 rounded-full border border-[#e5e2df] flex items-center justify-center text-[#1c1c1a] hover:bg-[#fcf9f6] transition-colors disabled:opacity-50"
+                  className="w-12 h-12 rounded-lg border border-border flex items-center justify-center text-on-surface hover:bg-surface transition-colors disabled:opacity-50"
                   onClick={scrollNext}
                   disabled={!nextBtnEnabled}
                 >

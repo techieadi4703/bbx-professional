@@ -64,7 +64,7 @@ export default function ProfessionalDashboard() {
         navigate("/setup");
         return;
       }
-      
+
       setProfile(profData);
       setSkillsInput((profData.skills || []).join(", "));
       setLanguagesInput((profData.languages || []).join(", "));
@@ -78,7 +78,7 @@ export default function ProfessionalDashboard() {
         .gte("date", today)
         .order("date", { ascending: true })
         .order("start_time", { ascending: true });
-      
+
       if (slotsData) setSlots(slotsData);
 
       const { data: reviewsData } = await supabase
@@ -197,9 +197,9 @@ export default function ProfessionalDashboard() {
   if (isLoading || !profile) {
     return (
       <Layout>
-        <div className="flex flex-col items-center justify-center min-h-[70vh] bg-[#fcf9f6]">
-          <div className="w-10 h-10 border-4 border-[#e5e2df] border-t-[#735c00] rounded-full animate-spin"></div>
-          <p className="font-body text-xs font-bold uppercase tracking-widest text-[#74777d] mt-6">Loading Dashboard...</p>
+        <div className="flex flex-col items-center justify-center min-h-[70vh] bg-surface">
+          <div className="w-10 h-10 border-4 border-border border-t-secondary rounded-full animate-spin"></div>
+          <p className="font-body text-xs font-bold uppercase tracking-widest text-on-surface-variant mt-6">Loading Dashboard...</p>
         </div>
       </Layout>
     );
@@ -207,67 +207,60 @@ export default function ProfessionalDashboard() {
 
   return (
     <Layout>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap');
-        .font-headline { font-family: 'Newsreader', serif; }
-        .font-body { font-family: 'Manrope', sans-serif; }
-      `}</style>
-      
-      <div className="bg-[#fcf9f6] text-[#1c1c1a] min-h-screen font-body w-full pb-20 relative">
+
+      <div className="bg-surface text-on-surface min-h-screen font-body w-full pb-20 relative">
         {/* Subtle grid background */}
-        <div className="absolute inset-0 pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
-        
+        <div className="absolute inset-0 pointer-events-none z-0 bg-blueprint opacity-30" />
+
         <main className="max-w-[1440px] mx-auto px-4 md:px-12 pt-2 pb-6 md:py-24 relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-            
+
             {/* Sidebar Navigation */}
             <div className="hidden lg:block w-1/4 shrink-0 sticky top-32">
-              <span className="inline-block py-1.5 px-3 bg-[#735c00]/10 text-[#735c00] text-[10px] font-bold uppercase tracking-widest rounded-full border border-[#735c00]/20 mb-6">
-                PROFESSIONAL PORTAL
-              </span>
-              
-              <h1 className="text-4xl lg:text-5xl font-headline tracking-tight leading-tight mb-4 break-words">
-                Hi, {profile.full_name?.split(' ')[0]} <span className="italic opacity-70">👋</span>
-              </h1>
-              
-              <div className="flex flex-wrap items-center gap-3 mb-8">
-                 <Badge variant="outline" className="rounded-full px-3 py-1 font-bold text-[10px] uppercase tracking-widest bg-white border-[#e5e2df]">{profile.profession}</Badge>
-                 {profile.years_experience > 0 && (
-                    <span className="text-xs font-bold text-[#74777d] bg-[#f6f3f0] px-3 py-1 rounded-full">{profile.years_experience} Yrs Exp</span>
-                 )}
+              <div className="mb-8">
+                <h1 className="text-3xl lg:text-4xl font-headline font-semibold tracking-tight text-on-surface mb-1 flex items-center gap-2">
+                  Hi, {profile.full_name?.split(' ')[0]}
+                </h1>
+                <p className="text-sm text-on-surface-variant mb-4">Professional Portal</p>
+
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="outline" className="px-2.5 py-0.5 font-bold text-[10px] uppercase tracking-widest bg-surface border-border text-on-surface-variant">{profile.profession}</Badge>
+                  {profile.years_experience > 0 && (
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant bg-surface-container-low border border-transparent px-2.5 py-0.5 rounded-full">{profile.years_experience} Yrs Exp</span>
+                  )}
+                </div>
               </div>
 
-              <div className="space-y-2 pt-6 border-t border-[#e5e2df]">
+              <div className="space-y-2 pt-6 border-t border-border">
                 {[
                   { id: "profile", label: "My Profile", icon: User },
                   { id: "slots", label: "Manage Schedule", icon: Calendar },
                   { id: "earnings", label: "Earnings", icon: Wallet },
                   { id: "reviews", label: "Customer Reviews", icon: MessageSquare },
                 ].map((item) => (
-                  <button 
+                  <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`w-full flex items-center justify-between p-4 rounded-xl transition-all relative group font-bold text-sm ${
-                      activeTab === item.id 
-                        ? "bg-white border border-[#e5e2df] text-[#1c1c1a] shadow-sm" 
-                        : "border border-transparent text-[#74777d] hover:bg-[#f6f3f0] hover:text-[#1c1c1a]"
-                    }`}
+                    className={`w-full flex items-center justify-between p-4 rounded-xl transition-all relative group font-bold text-sm ${activeTab === item.id
+                        ? "bg-surface-container-lowest border border-border text-on-surface shadow-sm"
+                        : "border border-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
+                      }`}
                   >
                     <div className="flex items-center gap-3">
-                      <item.icon className={`w-4 h-4 ${activeTab === item.id ? "text-[#735c00]" : "opacity-70"}`} />
+                      <item.icon className={`w-4 h-4 ${activeTab === item.id ? "text-secondary" : "opacity-70"}`} />
                       <span>{item.label}</span>
                     </div>
                     {activeTab === item.id && (
-                      <ArrowRight className="w-4 h-4 text-[#735c00]" />
+                      <ArrowRight className="w-4 h-4 text-secondary" />
                     )}
                   </button>
                 ))}
               </div>
 
-              <div className="mt-8 pt-6 border-t border-[#e5e2df]">
-                <button 
+              <div className="mt-8 pt-6 border-t border-border">
+                <button
                   onClick={handleLogout}
-                  className="w-full flex items-center gap-3 p-4 text-[#74777d] hover:bg-red-50 hover:text-red-600 rounded-xl transition-all font-bold text-sm"
+                  className="w-full flex items-center gap-3 p-4 text-on-surface-variant hover:bg-red-50 hover:text-red-600 rounded-xl transition-all font-bold text-sm"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Log out</span>
@@ -284,104 +277,103 @@ export default function ProfessionalDashboard() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="bg-white border border-[#e5e2df] p-4 md:p-12 rounded-2xl shadow-xl shadow-black/5 min-h-[600px]"
+                  className="bg-surface-container-lowest border border-border p-4 md:p-12 rounded-2xl shadow-sm shadow-black/5 min-h-[600px]"
                 >
-                  
+
                   {/* PROFILE TAB */}
                   {activeTab === "profile" && (
                     <div className="space-y-10">
-                      <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#e5e2df] pb-8">
+                      <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-border pb-8">
                         <div>
-                           <h2 className="text-3xl font-headline tracking-tight mb-2">My <span className="italic">Profile</span></h2>
-                           <p className="text-sm font-body text-[#74777d]">Manage your public professional information and rates.</p>
+                          <h2 className="text-3xl font-headline tracking-tight mb-2">My <span className="italic">Profile</span></h2>
+                          <p className="text-sm font-body text-on-surface-variant">Manage your public professional information and rates.</p>
                         </div>
                         <div className="flex items-center gap-2 sm:gap-3 shrink-0 flex-wrap">
-                           <span className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Status:</span>
-                           <button 
-                             onClick={() => setProfile({...profile, is_available: !profile.is_available})}
-                             className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
-                               profile.is_available 
-                                 ? "bg-[#735c00] text-white shadow-md shadow-[#735c00]/20" 
-                                 : "bg-[#f6f3f0] text-[#74777d] hover:bg-[#e5e2df]"
-                             }`}
-                           >
-                             {profile.is_available ? "Available" : "Unavailable"}
-                           </button>
-                           <button 
-                             onClick={handleLogout}
-                             className="lg:hidden px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest bg-red-50 text-red-600 border border-red-100 hover:bg-red-100 transition-all flex items-center gap-1.5"
-                           >
-                             <LogOut className="w-3.5 h-3.5" />
-                             Log out
-                           </button>
+                          <span className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Status:</span>
+                          <button
+                            onClick={() => setProfile({ ...profile, is_available: !profile.is_available })}
+                            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${profile.is_available
+                                ? "bg-secondary text-secondary-foreground shadow-md shadow-secondary/20"
+                                : "bg-surface-container-low text-on-surface-variant hover:bg-surface-container"
+                              }`}
+                          >
+                            {profile.is_available ? "Available" : "Unavailable"}
+                          </button>
+                          <button
+                            onClick={handleLogout}
+                            className="lg:hidden px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest bg-red-50 text-red-600 border border-red-100 hover:bg-red-100 transition-all flex items-center gap-1.5"
+                          >
+                            <LogOut className="w-3.5 h-3.5" />
+                            Log out
+                          </button>
                         </div>
                       </header>
 
                       <form onSubmit={handleUpdateProfile} className="space-y-6 md:space-y-10">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 md:gap-6">
-                           
-                           {/* Full Name */}
-                           <div className="space-y-2 opacity-70">
-                             <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Full Name</label>
-                             <div className="relative">
-                               <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input value={profile.full_name} disabled className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent rounded-lg text-sm font-bold outline-none cursor-not-allowed" />
-                             </div>
-                           </div>
-                           
-                           {/* Trade */}
-                           <div className="space-y-2">
-                             <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Trade *</label>
-                             <div className="relative">
-                               <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input value={profile.profession} onChange={e => setProfile({...profile, profession: e.target.value})} className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
-                             </div>
-                           </div>
-                           
-                           {/* Rates */}
-                           <div className="space-y-2">
-                             <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Hourly Rate (₹)</label>
-                             <div className="relative">
-                               <IndianRupee className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input type="number" value={profile.hourly_rate} onChange={e => setProfile({...profile, hourly_rate: parseInt(e.target.value)})} className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
-                             </div>
-                           </div>
 
-                           <div className="space-y-2">
-                             <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Daily Rate (₹)</label>
-                             <div className="relative">
-                               <IndianRupee className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input type="number" value={profile.daily_rate} onChange={e => setProfile({...profile, daily_rate: parseInt(e.target.value)})} className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
-                             </div>
-                           </div>
+                          {/* Full Name */}
+                          <div className="space-y-2 opacity-70">
+                            <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Full Name</label>
+                            <div className="relative">
+                              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                              <input value={profile.full_name} disabled className="w-full pl-11 pr-4 py-2 md:py-3 bg-surface-container-low border border-transparent rounded-lg text-sm font-bold outline-none cursor-not-allowed" />
+                            </div>
+                          </div>
 
-                           {/* City */}
-                           <div className="space-y-2 md:col-span-2">
-                             <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">City</label>
-                             <div className="relative">
-                               <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#74777d]" />
-                               <input value={profile.city} onChange={e => setProfile({...profile, city: e.target.value})} className="w-full pl-11 pr-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
-                             </div>
-                           </div>
+                          {/* Trade */}
+                          <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Trade *</label>
+                            <div className="relative">
+                              <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                              <input value={profile.profession} onChange={e => setProfile({ ...profile, profession: e.target.value })} className="w-full pl-11 pr-4 py-2 md:py-3 bg-surface-container-low border border-transparent focus:border-secondary rounded-lg text-sm font-bold outline-none transition-colors" />
+                            </div>
+                          </div>
+
+                          {/* Rates */}
+                          <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Hourly Rate (₹)</label>
+                            <div className="relative">
+                              <IndianRupee className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                              <input type="number" value={profile.hourly_rate} onChange={e => setProfile({ ...profile, hourly_rate: parseInt(e.target.value) })} className="w-full pl-11 pr-4 py-2 md:py-3 bg-surface-container-low border border-transparent focus:border-secondary rounded-lg text-sm font-bold outline-none transition-colors" />
+                            </div>
+                          </div>
+
+                          <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Daily Rate (₹)</label>
+                            <div className="relative">
+                              <IndianRupee className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                              <input type="number" value={profile.daily_rate} onChange={e => setProfile({ ...profile, daily_rate: parseInt(e.target.value) })} className="w-full pl-11 pr-4 py-2 md:py-3 bg-surface-container-low border border-transparent focus:border-secondary rounded-lg text-sm font-bold outline-none transition-colors" />
+                            </div>
+                          </div>
+
+                          {/* City */}
+                          <div className="space-y-2 md:col-span-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">City</label>
+                            <div className="relative">
+                              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                              <input value={profile.city} onChange={e => setProfile({ ...profile, city: e.target.value })} className="w-full pl-11 pr-4 py-2 md:py-3 bg-surface-container-low border border-transparent focus:border-secondary rounded-lg text-sm font-bold outline-none transition-colors" />
+                            </div>
+                          </div>
                         </div>
 
                         <div className="space-y-6">
-                           <div className="space-y-2">
-                             <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Skills (comma-separated)</label>
-                             <input value={skillsInput} onChange={e => setSkillsInput(e.target.value)} placeholder="Structural Wiring, Civil Foundations..." className="w-full px-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors" />
-                           </div>
+                          <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Skills (comma-separated)</label>
+                            <input value={skillsInput} onChange={e => setSkillsInput(e.target.value)} placeholder="Structural Wiring, Civil Foundations..." className="w-full px-4 py-2 md:py-3 bg-surface-container-low border border-transparent focus:border-secondary rounded-lg text-sm font-bold outline-none transition-colors" />
+                          </div>
 
-                           <div className="space-y-2">
-                             <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Professional Bio</label>
-                             <textarea value={profile.bio || ""} onChange={e => setProfile({...profile, bio: e.target.value})} rows={3} placeholder="A brief summary of your expertise and experience..." className="w-full px-4 py-2 md:py-3 bg-[#f6f3f0] border border-transparent focus:border-[#735c00] rounded-lg text-sm font-bold outline-none transition-colors resize-none" />
-                           </div>
+                          <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Professional Bio</label>
+                            <textarea value={profile.bio || ""} onChange={e => setProfile({ ...profile, bio: e.target.value })} rows={3} placeholder="A brief summary of your expertise and experience..." className="w-full px-4 py-2 md:py-3 bg-surface-container-low border border-transparent focus:border-secondary rounded-lg text-sm font-bold outline-none transition-colors resize-none" />
+                          </div>
                         </div>
 
-                        <div className="pt-8 border-t border-[#e5e2df] flex justify-end">
-                           <button type="submit" className="flex items-center gap-2 px-8 py-3.5 bg-[#1c1c1a] text-white rounded-full font-bold hover:bg-[#735c00] transition-colors shadow-md text-sm">
-                             <Save className="w-4 h-4" />
-                             Save Profile Changes
-                           </button>
+                        <div className="pt-8 border-t border-border flex justify-end">
+                          <button type="submit" className="flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground rounded-lg font-bold hover:bg-secondary transition-colors shadow-md text-sm">
+                            <Save className="w-4 h-4" />
+                            Save Profile Changes
+                          </button>
                         </div>
                       </form>
                     </div>
@@ -390,84 +382,84 @@ export default function ProfessionalDashboard() {
                   {/* SCHEDULE TAB */}
                   {activeTab === "slots" && (
                     <div className="space-y-10">
-                      <header className="border-b border-[#e5e2df] pb-8">
-                         <h2 className="text-3xl font-headline tracking-tight mb-2">Manage <span className="italic">Schedule</span></h2>
-                         <p className="text-sm font-body text-[#74777d]">Add your available time slots so clients can book you.</p>
+                      <header className="border-b border-border pb-8">
+                        <h2 className="text-3xl font-headline tracking-tight mb-2">Manage <span className="italic">Schedule</span></h2>
+                        <p className="text-sm font-body text-on-surface-variant">Add your available time slots so clients can book you.</p>
                       </header>
-                      
-                      <div className="grid grid-cols-1 xl:grid-cols-12 gap-12">
-                         
-                         {/* Add Slot Form */}
-                         <div className="xl:col-span-5 space-y-6">
-                            <div className="bg-[#fcf9f6] p-5 md:p-8 rounded-2xl border border-[#e5e2df]">
-                              <h3 className="text-lg font-headline font-bold mb-6 flex items-center gap-2">
-                                <Calendar className="w-5 h-5 text-[#735c00]" />
-                                Add Availability
-                              </h3>
-                              <form onSubmit={handleAddSlot} className="space-y-5">
-                                 <div className="space-y-2">
-                                   <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Date</label>
-                                   <input type="date" required min={new Date().toISOString().split('T')[0]} value={newSlot.date} onChange={e => setNewSlot({...newSlot, date: e.target.value})} className="w-full px-4 py-3 bg-white border border-[#e5e2df] focus:border-[#735c00] rounded-lg text-sm outline-none font-bold transition-colors" />
-                                 </div>
-                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                      <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">Start time</label>
-                                      <input type="time" required value={newSlot.startTime} onChange={e => setNewSlot({...newSlot, startTime: e.target.value, endTime: newSlot.endTime && newSlot.endTime <= e.target.value ? "" : newSlot.endTime})} className="w-full px-4 py-3 bg-white border border-[#e5e2df] focus:border-[#735c00] rounded-lg text-sm outline-none font-bold transition-colors" />
-                                    </div>
-                                    <div className="space-y-2">
-                                      <label className="text-xs font-bold uppercase tracking-widest text-[#74777d]">End time</label>
-                                      <input type="time" required min={newSlot.startTime || undefined} value={newSlot.endTime} onChange={e => setNewSlot({...newSlot, endTime: e.target.value})} className="w-full px-4 py-3 bg-white border border-[#e5e2df] focus:border-[#735c00] rounded-lg text-sm outline-none font-bold transition-colors" />
-                                    </div>
-                                 </div>
-                                 <button type="submit" className="w-full py-3.5 mt-2 bg-[#1c1c1a] text-white rounded-full font-bold hover:bg-[#735c00] transition-colors shadow-md text-sm">
-                                   Add Slot
-                                 </button>
-                              </form>
-                            </div>
-                         </div>
 
-                         {/* Upcoming Slots */}
-                         <div className="xl:col-span-7 space-y-6">
-                            <h3 className="text-lg font-headline font-bold mb-4">Upcoming Slots</h3>
-                            {slots.length === 0 ? (
-                              <div className="py-16 text-center border-2 border-dashed border-[#e5e2df] rounded-2xl flex flex-col items-center justify-center bg-[#fcf9f6]">
-                                 <Calendar className="w-10 h-10 text-[#c4c6cc] mb-4" />
-                                 <p className="text-sm font-bold text-[#74777d]">No upcoming availability.</p>
-                                 <p className="text-xs text-[#c4c6cc] mt-1">Add slots using the form to receive bookings.</p>
+                      <div className="grid grid-cols-1 xl:grid-cols-12 gap-12">
+
+                        {/* Add Slot Form */}
+                        <div className="xl:col-span-5 space-y-6">
+                          <div className="bg-surface p-5 md:p-8 rounded-2xl border border-border">
+                            <h3 className="text-lg font-headline font-bold mb-6 flex items-center gap-2">
+                              <Calendar className="w-5 h-5 text-secondary" />
+                              Add Availability
+                            </h3>
+                            <form onSubmit={handleAddSlot} className="space-y-5">
+                              <div className="space-y-2">
+                                <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Date</label>
+                                <input type="date" required min={new Date().toISOString().split('T')[0]} value={newSlot.date} onChange={e => setNewSlot({ ...newSlot, date: e.target.value })} className="w-full px-4 py-3 bg-surface-container-lowest border border-border focus:border-secondary rounded-lg text-sm outline-none font-bold transition-colors" />
                               </div>
-                            ) : (
-                              <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2">
-                                {slots.map((slot) => (
-                                  <div key={slot.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-white border border-[#e5e2df] rounded-xl hover:border-[#735c00] transition-all gap-4">
-                                    <div className="flex items-center gap-4">
-                                      <div className="w-12 h-12 shrink-0 rounded-full bg-[#f6f3f0] flex items-center justify-center text-[#1c1c1a]">
-                                        <Clock className="w-5 h-5" />
-                                      </div>
-                                      <div>
-                                        <p className="text-sm font-bold text-[#1c1c1a]">{new Date(slot.date).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</p>
-                                        <p className="text-xs font-bold text-[#74777d] mt-1 bg-[#fcf9f6] inline-block px-2 py-0.5 rounded border border-[#e5e2df]">
-                                          {slot.start_time.substring(0,5)} — {slot.end_time.substring(0,5)}
-                                        </p>
-                                      </div>
+                              <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                  <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Start time</label>
+                                  <input type="time" required value={newSlot.startTime} onChange={e => setNewSlot({ ...newSlot, startTime: e.target.value, endTime: newSlot.endTime && newSlot.endTime <= e.target.value ? "" : newSlot.endTime })} className="w-full px-4 py-3 bg-surface-container-lowest border border-border focus:border-secondary rounded-lg text-sm outline-none font-bold transition-colors" />
+                                </div>
+                                <div className="space-y-2">
+                                  <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">End time</label>
+                                  <input type="time" required min={newSlot.startTime || undefined} value={newSlot.endTime} onChange={e => setNewSlot({ ...newSlot, endTime: e.target.value })} className="w-full px-4 py-3 bg-surface-container-lowest border border-border focus:border-secondary rounded-lg text-sm outline-none font-bold transition-colors" />
+                                </div>
+                              </div>
+                              <button type="submit" className="w-full py-3.5 mt-2 bg-primary text-primary-foreground rounded-lg font-bold hover:bg-secondary transition-colors shadow-md text-sm">
+                                Add Slot
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+
+                        {/* Upcoming Slots */}
+                        <div className="xl:col-span-7 space-y-6">
+                          <h3 className="text-lg font-headline font-bold mb-4">Upcoming Slots</h3>
+                          {slots.length === 0 ? (
+                            <div className="py-16 text-center border-2 border-dashed border-border rounded-2xl flex flex-col items-center justify-center bg-surface">
+                              <Calendar className="w-10 h-10 text-outline-variant mb-4" />
+                              <p className="text-sm font-bold text-on-surface-variant">No upcoming availability.</p>
+                              <p className="text-xs text-outline-variant mt-1">Add slots using the form to receive bookings.</p>
+                            </div>
+                          ) : (
+                            <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2">
+                              {slots.map((slot) => (
+                                <div key={slot.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-surface-container-lowest border border-border rounded-xl hover:border-secondary transition-all gap-4">
+                                  <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 shrink-0 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface">
+                                      <Clock className="w-5 h-5" />
                                     </div>
-                                    <div className="flex items-center sm:justify-end justify-start w-full sm:w-auto">
-                                       {slot.is_booked ? (
-                                         <Badge className="bg-[#735c00] text-white font-bold text-xs uppercase tracking-widest px-3 py-1.5">Booked</Badge>
-                                       ) : (
-                                         <button 
-                                           onClick={() => handleDeleteSlot(slot.id)} 
-                                           className="px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100 flex items-center gap-2"
-                                         >
-                                           <Trash className="w-3 h-3" />
-                                           Remove
-                                         </button>
-                                       )}
+                                    <div>
+                                      <p className="text-sm font-bold text-on-surface">{new Date(slot.date).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                                      <p className="text-xs font-bold text-on-surface-variant mt-1 bg-surface inline-block px-2 py-0.5 rounded border border-border">
+                                        {slot.start_time.substring(0, 5)} — {slot.end_time.substring(0, 5)}
+                                      </p>
                                     </div>
                                   </div>
-                                ))}
-                              </div>
-                            )}
-                         </div>
+                                  <div className="flex items-center sm:justify-end justify-start w-full sm:w-auto">
+                                    {slot.is_booked ? (
+                                      <Badge className="bg-secondary text-secondary-foreground font-bold text-xs uppercase tracking-widest px-3 py-1.5">Booked</Badge>
+                                    ) : (
+                                      <button
+                                        onClick={() => handleDeleteSlot(slot.id)}
+                                        className="px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100 flex items-center gap-2"
+                                      >
+                                        <Trash className="w-3 h-3" />
+                                        Remove
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -475,70 +467,70 @@ export default function ProfessionalDashboard() {
                   {/* EARNINGS TAB */}
                   {activeTab === "earnings" && (
                     <div className="space-y-10">
-                       <header className="border-b border-[#e5e2df] pb-8">
-                          <h2 className="text-3xl font-headline tracking-tight mb-2">My <span className="italic">Earnings</span></h2>
-                          <p className="text-sm font-body text-[#74777d]">Track your jobs, ratings, and financial performance.</p>
-                       </header>
-                       
-                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                          {[
-                            { label: "Jobs Completed", value: profile.total_jobs, icon: CheckCircle },
-                            { label: "Overall Rating", value: profile.rating, icon: Star, highlight: true },
-                            { label: "Total Reviews", value: profile.total_reviews, icon: MessageSquare }
-                          ].map((stat, i) => (
-                            <div key={i} className="p-6 border border-[#e5e2df] bg-[#fcf9f6] rounded-2xl relative overflow-hidden group hover:border-[#735c00] transition-colors">
-                               <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-4 bg-white border border-[#e5e2df] shadow-sm ${stat.highlight ? "text-[#735c00]" : "text-[#1c1c1a]"}`}>
-                                  <stat.icon className="w-5 h-5" />
-                               </div>
-                               <p className="text-xs font-bold uppercase tracking-widest text-[#74777d] mb-1">{stat.label}</p>
-                               <p className="text-4xl font-headline font-black text-[#1c1c1a]">{stat.value || "0"}</p>
-                            </div>
-                          ))}
-                       </div>
+                      <header className="border-b border-border pb-8">
+                        <h2 className="text-3xl font-headline tracking-tight mb-2">My <span className="italic">Earnings</span></h2>
+                        <p className="text-sm font-body text-on-surface-variant">Track your jobs, ratings, and financial performance.</p>
+                      </header>
 
-                       <div className="py-24 mt-8 rounded-2xl text-center border-2 border-dashed border-[#e5e2df] bg-[#fcf9f6]">
-                          <Wallet className="w-12 h-12 mx-auto mb-4 text-[#c4c6cc]" />
-                          <h3 className="text-lg font-bold text-[#1c1c1a]">Detailed Ledger</h3>
-                          <p className="text-sm text-[#74777d] mt-2">Coming soon to the dashboard.</p>
-                       </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        {[
+                          { label: "Jobs Completed", value: profile.total_jobs, icon: CheckCircle },
+                          { label: "Overall Rating", value: profile.rating, icon: Star, highlight: true },
+                          { label: "Total Reviews", value: profile.total_reviews, icon: MessageSquare }
+                        ].map((stat, i) => (
+                          <div key={i} className="p-6 border border-border bg-surface rounded-2xl relative overflow-hidden group hover:border-secondary transition-colors">
+                            <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-4 bg-surface-container-lowest border border-border shadow-sm ${stat.highlight ? "text-secondary" : "text-on-surface"}`}>
+                              <stat.icon className="w-5 h-5" />
+                            </div>
+                            <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">{stat.label}</p>
+                            <p className="text-4xl font-headline font-black text-on-surface">{stat.value || "0"}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="py-24 mt-8 rounded-2xl text-center border-2 border-dashed border-border bg-surface">
+                        <Wallet className="w-12 h-12 mx-auto mb-4 text-outline-variant" />
+                        <h3 className="text-lg font-bold text-on-surface">Detailed Ledger</h3>
+                        <p className="text-sm text-on-surface-variant mt-2">Coming soon to the dashboard.</p>
+                      </div>
                     </div>
                   )}
 
                   {/* REVIEWS TAB */}
                   {activeTab === "reviews" && (
                     <div className="space-y-10">
-                       <header className="border-b border-[#e5e2df] pb-8">
-                          <h2 className="text-3xl font-headline tracking-tight mb-2">Customer <span className="italic">Reviews</span></h2>
-                          <p className="text-sm font-body text-[#74777d]">See what clients are saying about your work.</p>
-                       </header>
+                      <header className="border-b border-border pb-8">
+                        <h2 className="text-3xl font-headline tracking-tight mb-2">Customer <span className="italic">Reviews</span></h2>
+                        <p className="text-sm font-body text-on-surface-variant">See what clients are saying about your work.</p>
+                      </header>
 
-                       {reviews.length === 0 ? (
-                         <div className="py-24 text-center border border-[#e5e2df] rounded-2xl bg-[#fcf9f6]">
-                            <MessageSquare className="w-12 h-12 mx-auto mb-4 text-[#c4c6cc]" />
-                            <h3 className="text-lg font-bold text-[#1c1c1a]">No reviews yet</h3>
-                            <p className="text-sm text-[#74777d] mt-2">Complete jobs to start receiving feedback from clients.</p>
-                         </div>
-                       ) : (
-                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {reviews.map((rev) => (
-                              <div key={rev.id} className="p-5 md:p-8 border border-[#e5e2df] rounded-2xl bg-white hover:border-[#735c00] transition-all shadow-sm">
-                                 <div className="flex items-center gap-1 mb-4">
-                                    {[...Array(5)].map((_, i) => (
-                                      <Star key={i} className={`w-4 h-4 ${i < rev.rating ? "text-[#735c00] fill-current" : "text-[#e5e2df]"}`} />
-                                    ))}
-                                 </div>
-                                 <p className="font-body text-base text-[#1c1c1a] leading-relaxed italic mb-6">"{rev.review}"</p>
-                                 <div className="flex justify-between items-center border-t border-[#e5e2df] pt-4">
-                                    <span className="text-xs font-bold uppercase tracking-widest flex items-center gap-1 text-[#74777d]">
-                                      <ShieldCheck className="w-4 h-4 text-green-600" />
-                                      Verified
-                                    </span>
-                                    <span className="text-xs font-bold text-[#c4c6cc]">{new Date(rev.created_at).toLocaleDateString()}</span>
-                                 </div>
+                      {reviews.length === 0 ? (
+                        <div className="py-24 text-center border border-border rounded-2xl bg-surface">
+                          <MessageSquare className="w-12 h-12 mx-auto mb-4 text-outline-variant" />
+                          <h3 className="text-lg font-bold text-on-surface">No reviews yet</h3>
+                          <p className="text-sm text-on-surface-variant mt-2">Complete jobs to start receiving feedback from clients.</p>
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {reviews.map((rev) => (
+                            <div key={rev.id} className="p-5 md:p-8 border border-border rounded-2xl bg-surface-container-lowest hover:border-secondary transition-all shadow-sm">
+                              <div className="flex items-center gap-1 mb-4">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star key={i} className={`w-4 h-4 ${i < rev.rating ? "text-secondary fill-current" : "text-outline-variant"}`} />
+                                ))}
                               </div>
-                            ))}
-                         </div>
-                       )}
+                              <p className="font-body text-base text-on-surface leading-relaxed italic mb-6">"{rev.review}"</p>
+                              <div className="flex justify-between items-center border-t border-border pt-4">
+                                <span className="text-xs font-bold uppercase tracking-widest flex items-center gap-1 text-on-surface-variant">
+                                  <ShieldCheck className="w-4 h-4 text-green-600" />
+                                  Verified
+                                </span>
+                                <span className="text-xs font-bold text-outline-variant">{new Date(rev.created_at).toLocaleDateString()}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
 
@@ -550,7 +542,7 @@ export default function ProfessionalDashboard() {
         </main>
 
         {/* Mobile Bottom Navigation */}
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#fcf9f6] border-t border-[#e5e2df] z-50 px-3 sm:px-6 py-2 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] pb-[env(safe-area-inset-bottom)]">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-border z-50 px-3 sm:px-6 py-2 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] pb-[env(safe-area-inset-bottom)]">
           <nav className="flex items-center justify-around">
             {[
               { id: "slots", label: "Schedule", icon: Calendar },
@@ -565,10 +557,10 @@ export default function ProfessionalDashboard() {
                   onClick={() => setActiveTab(item.id)}
                   className="relative flex flex-col items-center gap-1 py-1"
                 >
-                  <div className={`p-2 rounded-xl transition-all duration-300 ${isActive ? 'bg-[#735c00] text-white shadow-lg' : 'text-[#74777d] hover:text-[#1c1c1a] hover:bg-[#e5e2df]/50'}`}>
+                  <div className={`p-2 rounded-xl transition-all duration-300 ${isActive ? 'bg-secondary text-secondary-foreground shadow-lg' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container/50'}`}>
                     <item.icon className="w-5 h-5" />
                   </div>
-                  <span className={`text-[9px] font-bold tracking-widest uppercase transition-colors ${isActive ? 'text-[#735c00]' : 'text-[#74777d]'}`}>
+                  <span className={`text-[9px] font-bold tracking-widest uppercase transition-colors ${isActive ? 'text-secondary' : 'text-on-surface-variant'}`}>
                     {item.label}
                   </span>
                 </button>

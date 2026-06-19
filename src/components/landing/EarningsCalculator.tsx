@@ -13,7 +13,7 @@ export const EarningsCalculator = () => {
   const earnings = Math.round(hours[0] * days[0] * rate * 0.8);
 
   return (
-    <section className="py-10 md:py-24 bg-[#1c1c1a] text-white">
+    <section className="py-10 md:py-24 bg-surface-container-lowest text-on-surface">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <Reveal width="100%">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
@@ -21,31 +21,31 @@ export const EarningsCalculator = () => {
             {/* Left Column */}
             <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-headline tracking-tight">
-                Estimate your <span className="italic text-[#735c00]">earnings</span>
+                Estimate your <span className="italic text-secondary">earnings</span>
               </h2>
-              <p className="text-white/80 font-medium leading-relaxed max-w-lg mx-auto lg:mx-0">
+              <p className="text-on-surface-variant font-medium leading-relaxed max-w-lg mx-auto lg:mx-0">
                 See how much you could earn by partnering with BuildBazaarX. Our top professionals make up to 50% more than standard industry rates, with payouts sent directly to your bank account every week.
               </p>
             </div>
 
             {/* Right Column */}
             <RevealItem className="w-full lg:w-1/2">
-              <div className="bg-white text-[#1c1c1a] rounded-3xl p-5 md:p-12 shadow-2xl border border-[#e5e2df]">
+              <div className="bg-surface text-on-surface rounded-3xl p-5 md:p-12 shadow-sm border border-border">
                 
                 <div className="mb-10 text-center">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#74777d] block mb-2">Estimated Net Earnings</span>
-                  <div className="text-5xl md:text-6xl font-headline font-bold text-[#735c00]">
-                    ₹{earnings.toLocaleString('en-IN')}<span className="text-2xl font-body text-[#74777d] font-normal">/month</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Estimated Net Earnings</span>
+                  <div className="text-5xl md:text-6xl font-headline font-bold text-secondary">
+                    ₹{earnings.toLocaleString('en-IN')}<span className="text-2xl font-body text-on-surface-variant font-normal">/month</span>
                   </div>
                 </div>
 
                 <div className="space-y-8">
                   <div className="space-y-3">
                     <div className="flex justify-between items-center text-sm font-bold uppercase tracking-widest">
-                      <span className="text-[#74777d] text-[10px]">Your Trade</span>
+                      <span className="text-on-surface-variant text-[10px]">Your Trade</span>
                     </div>
                     <Select value={trade} onValueChange={setTrade}>
-                      <SelectTrigger className="w-full h-14 bg-[#fcf9f6] border-[#e5e2df] focus:border-[#735c00] rounded-xl font-bold text-base">
+                      <SelectTrigger className="w-full h-14 bg-surface border-border focus:border-secondary rounded-xl font-bold text-base">
                         <SelectValue placeholder="Select trade" />
                       </SelectTrigger>
                       <SelectContent>
@@ -58,8 +58,8 @@ export const EarningsCalculator = () => {
 
                   <div className="space-y-4">
                     <div className="flex justify-between items-center text-sm font-bold uppercase tracking-widest">
-                      <span className="text-[#74777d] text-[10px]">Hours per day</span>
-                      <span className="text-[#1c1c1a] text-xs">{hours[0]} hrs</span>
+                      <span className="text-on-surface-variant text-[10px]">Hours per day</span>
+                      <span className="text-on-surface text-xs">{hours[0]} hrs</span>
                     </div>
                     <Slider 
                       value={hours} 
@@ -73,8 +73,8 @@ export const EarningsCalculator = () => {
 
                   <div className="space-y-4">
                     <div className="flex justify-between items-center text-sm font-bold uppercase tracking-widest">
-                      <span className="text-[#74777d] text-[10px]">Days per month</span>
-                      <span className="text-[#1c1c1a] text-xs">{days[0]} days</span>
+                      <span className="text-on-surface-variant text-[10px]">Days per month</span>
+                      <span className="text-on-surface text-xs">{days[0]} days</span>
                     </div>
                     <Slider 
                       value={days} 
@@ -87,7 +87,7 @@ export const EarningsCalculator = () => {
                   </div>
                 </div>
 
-                <p className="text-[10px] text-center text-[#74777d] mt-10">
+                <p className="text-[10px] text-center text-on-surface-variant mt-10">
                   Estimate only. Actual earnings depend on job mix, location, and ratings.
                 </p>
               </div>

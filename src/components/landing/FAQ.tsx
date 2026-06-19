@@ -47,22 +47,22 @@ export const FAQ = () => {
   ];
 
   return (
-    <section className="py-10 md:py-24 bg-white">
+    <section className="py-10 md:py-24 bg-surface-container-lowest">
       <div className="max-w-[800px] mx-auto px-6 md:px-12">
         <Reveal width="100%">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-5xl font-headline tracking-tight text-[#1c1c1a]">
-              Frequently asked <span className="italic text-[#735c00]">questions</span>
+            <h2 className="text-3xl md:text-5xl font-headline tracking-tight text-on-surface">
+              Frequently asked <span className="italic text-secondary">questions</span>
             </h2>
           </div>
 
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`item-${i}`} className="border-[#e5e2df] bg-[#fcf9f6] rounded-xl px-4 md:px-6">
-                <AccordionTrigger className="font-headline font-bold text-lg md:text-xl text-[#1c1c1a] hover:no-underline text-left py-4 md:py-6">
+              <AccordionItem key={i} value={`item-${i}`} className="border-border bg-surface rounded-xl px-4 md:px-6">
+                <AccordionTrigger className="font-headline font-bold text-lg md:text-xl text-on-surface hover:no-underline text-left py-4 md:py-6">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-[#74777d] font-body text-base leading-relaxed pb-6">
+                <AccordionContent className="text-on-surface-variant font-body text-base leading-relaxed pb-6">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>

@@ -18,19 +18,19 @@ export default function About() {
         .font-body { font-family: 'Manrope', sans-serif; }
       `}</style>
 
-      <div className="bg-[#fcf9f6] min-h-screen text-[#1c1c1a] font-body">
+      <div className="bg-surface min-h-screen text-on-surface font-body">
         {/* Hero Section */}
         <section className="pt-16 pb-10 md:pt-32 md:pb-20 px-6 md:px-12 relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e2df 1px, transparent 1px), linear-gradient(90deg, #e5e2df 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
+          <div className="absolute inset-0 pointer-events-none z-0 bg-blueprint opacity-30" />
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <Reveal width="100%">
-              <span className="inline-block py-1.5 px-3 bg-[#735c00]/10 text-[#735c00] text-[10px] font-bold uppercase tracking-widest rounded-full border border-[#735c00]/20 mb-6">
+              <span className="inline-block py-1.5 px-3 bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-widest rounded-full border border-secondary/20 mb-6">
                 OUR MISSION
               </span>
               <h1 className="text-4xl md:text-7xl font-headline tracking-tight leading-tight mb-8">
                 Empowering India's <span className="italic">Builders</span>
               </h1>
-              <p className="text-lg md:text-xl text-[#74777d] leading-relaxed max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
                 BuildBazaarX Professional is dedicated to organizing the unorganized sector of construction and home services. We provide verified professionals with a platform to grow their business, manage their schedule, and increase their earnings.
               </p>
             </Reveal>
@@ -38,34 +38,34 @@ export default function About() {
         </section>
 
         {/* Pillars Section */}
-        <section className="py-10 md:py-24 bg-white border-y border-[#e5e2df]">
+        <section className="py-10 md:py-24 bg-surface-container-lowest border-y border-border">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12">
             <Reveal width="100%">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-full bg-[#f6f3f0] flex items-center justify-center text-[#735c00]">
+                  <div className="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-secondary">
                     <ShieldCheck className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-headline font-bold">Trust & Transparency</h3>
-                  <p className="text-[#74777d] leading-relaxed">
+                  <p className="text-on-surface-variant leading-relaxed">
                     We ensure transparent pricing for both our professionals and customers. No hidden fees, no unfair cuts. You know exactly what you'll earn before you accept a job.
                   </p>
                 </div>
                 <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-full bg-[#f6f3f0] flex items-center justify-center text-[#735c00]">
+                  <div className="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-secondary">
                     <TrendingUp className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-headline font-bold">Predictable Growth</h3>
-                  <p className="text-[#74777d] leading-relaxed">
+                  <p className="text-on-surface-variant leading-relaxed">
                     With thousands of daily customer requests, we provide a steady stream of high-quality jobs, helping you scale your independent business sustainably.
                   </p>
                 </div>
                 <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-full bg-[#f6f3f0] flex items-center justify-center text-[#735c00]">
+                  <div className="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-secondary">
                     <Users className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-headline font-bold">Community Support</h3>
-                  <p className="text-[#74777d] leading-relaxed">
+                  <p className="text-on-surface-variant leading-relaxed">
                     You're never alone on the job. From free skills training to medical insurance and welfare programs, we invest heavily in the well-being of our network.
                   </p>
                 </div>
@@ -79,7 +79,7 @@ export default function About() {
           <div className="max-w-4xl mx-auto">
             <Reveal width="100%">
               <h2 className="text-4xl font-headline tracking-tight mb-8">The <span className="italic">Story</span></h2>
-              <div className="space-y-6 text-[#44474c] leading-relaxed text-lg">
+              <div className="space-y-6 text-on-surface-variant leading-relaxed text-lg">
                 <p>
                   For decades, skilled tradespeople in India have relied on word-of-mouth and localized networks to find work. This often led to unpredictable income, lack of professional recognition, and vulnerability to exploitation.
                 </p>
